@@ -117,7 +117,7 @@ public class FakerGen {
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
-faker.address().buildingNumber()
+
       });
       return Optional.of(data);
     } catch (InstantiationException | IllegalAccessException e) {
