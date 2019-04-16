@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import faker.generator.models.Doctor;
+import faker.generator.models.Grecia;
 import faker.generator.models.People;
 import faker.generator.models.Person;
 
@@ -41,6 +42,15 @@ public class FakerGenTest {
       people.getPeople().forEach(per -> {
         assertNotNull(per.getPeople());
       });
+    });
+  }
+
+  @Test
+  public void testAncient() {
+    Optional<Grecia> g = FakerGen.create(Grecia.class);
+    assertTrue(g.isPresent());
+    g.ifPresent(grecia -> {
+      assertNotNull(grecia.getGod());
     });
   }
 }

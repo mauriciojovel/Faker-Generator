@@ -69,6 +69,22 @@ public class FakerGen {
 
             }
             f.set(data, arrayList);
+          } else if (f.isAnnotationPresent(FakeAncient.class)) {
+            FakeAncient fakeAncient = f.getAnnotation(FakeAncient.class);
+            switch (fakeAncient.value()) {
+              case GOD:
+                f.set(data, faker.ancient().god());
+                break;
+              case HERO:
+                f.set(data, faker.ancient().hero());
+                break;
+              case TITAN:
+                f.set(data, faker.ancient().titan());
+                break;
+              case PRIMORDIAL:
+                f.set(data, faker.ancient().primordial());
+                break;
+            }
           } else if(f.isAnnotationPresent(FakeName.class)) {
             FakeName fname = f.getAnnotation(FakeName.class);
             switch (fname.value()) {
@@ -101,7 +117,7 @@ public class FakerGen {
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
-
+faker.address().buildingNumber()
       });
       return Optional.of(data);
     } catch (InstantiationException | IllegalAccessException e) {
