@@ -71,23 +71,11 @@ public class FakerGen {
             f.set(data, arrayList);
           } else if (f.isAnnotationPresent(FakeAncient.class)) {
             FakeAncient fakeAncient = f.getAnnotation(FakeAncient.class);
-            switch (fakeAncient.value()) {
-              case GOD:
-                f.set(data, faker.ancient().god());
-                break;
-              case HERO:
-                f.set(data, faker.ancient().hero());
-                break;
-              case TITAN:
-                f.set(data, faker.ancient().titan());
-                break;
-              case PRIMORDIAL:
-                f.set(data, faker.ancient().primordial());
-                break;
-            }
+            f.set(data, faker.resolve(fakeAncient.value().getFakerKey()));
           } else if(f.isAnnotationPresent(FakeName.class)) {
-            FakeName fname = f.getAnnotation(FakeName.class);
-            switch (fname.value()) {
+            FakeName fakerName = f.getAnnotation(FakeName.class);
+
+            switch (fakerName.value()) {
               case NAME:
                 f.set(data, faker.name().name());
                 break;
@@ -111,6 +99,9 @@ public class FakerGen {
                 break;
               case NAME_WITH_MIDDLE:
                 f.set(data, faker.name().nameWithMiddle());
+                break;
+              case USERNAME:
+                f.set(data, faker.name().username());
                 break;
             }
           }
