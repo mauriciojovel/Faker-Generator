@@ -6,6 +6,7 @@ import com.github.javafaker.Faker;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,10 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FakerGen {
 
-  private static final Faker faker;
+  private static Faker faker;
 
   static {
     faker = Faker.instance();
+  }
+
+  public static void changeLanguage(Locale locale) {
+    faker = Faker.instance(locale);
   }
 
   public static <T> Optional<T> create(Class<T> clazz) {
@@ -72,7 +77,16 @@ public class FakerGen {
           } else if (f.isAnnotationPresent(FakeAncient.class)) {
             FakeAncient fakeAncient = f.getAnnotation(FakeAncient.class);
             f.set(data, faker.resolve(fakeAncient.value().getFakerKey()));
-          } else if(f.isAnnotationPresent(FakeName.class)) {
+          } else if (f.isAnnotationPresent(FakeApp.class)) {
+            FakeApp fakeApp = f.getAnnotation(FakeApp.class);
+            f.set(data, faker.resolve(fakeApp.value().getFakeKey()));
+          } else if (f.isAnnotationPresent(FakeArtist.class)) {
+            FakeArtist fakeArtist = f.getAnnotation(FakeArtist.class);
+            f.set(data, faker.resolve(fakeArtist.value().getFakerKey()));
+          } else if (f.isAnnotationPresent(FakeAvatar.class)) {
+            FakeAvatar fakeAvatar = f.getAnnotation(FakeAvatar.class);
+            f.set(data, faker.avatar().image());
+          }else if(f.isAnnotationPresent(FakeName.class)) {
             FakeName fakerName = f.getAnnotation(FakeName.class);
 
             switch (fakerName.value()) {
