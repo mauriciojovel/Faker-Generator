@@ -31,6 +31,9 @@ public class Person {
   @FakeName(FakeNameType.NAME_WITH_MIDDLE)
   private String nameWithMiddle;
 
+  @FakeName(FakeNameType.USERNAME)
+  private String username;
+
   private Doctor doctor;
 
   private People people;

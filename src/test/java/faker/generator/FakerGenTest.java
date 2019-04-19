@@ -8,6 +8,7 @@ import faker.generator.models.App;
 import faker.generator.models.Artist;
 import faker.generator.models.Avatar;
 import faker.generator.models.Doctor;
+import faker.generator.models.EmptyModel;
 import faker.generator.models.Grecia;
 import faker.generator.models.People;
 import faker.generator.models.Person;
@@ -75,6 +76,12 @@ public class FakerGenTest {
     Optional<Artist> g = FakerGen.create(Artist.class);
     assertTrue(g.isPresent());
     g.ifPresent(artist -> assertNotNull(artist.getName()));
+  }
+
+  @Test
+  public void testEmptyResult() {
+    Optional<EmptyModel> e = FakerGen.create(EmptyModel.class);
+    assertFalse(e.isPresent());
   }
 
   @Test
