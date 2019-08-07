@@ -4,14 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import faker.generator.models.App;
-import faker.generator.models.Artist;
-import faker.generator.models.Avatar;
-import faker.generator.models.Doctor;
-import faker.generator.models.EmptyModel;
-import faker.generator.models.Grecia;
-import faker.generator.models.People;
-import faker.generator.models.Person;
+import faker.generator.models.*;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -82,6 +75,31 @@ public class FakerGenTest {
   public void testEmptyResult() {
     Optional<EmptyModel> e = FakerGen.create(EmptyModel.class);
     assertFalse(e.isPresent());
+  }
+
+  @Test
+  public void testNumbers() {
+    Optional<Numbers> n = FakerGen.create(Numbers.class);
+    assertTrue(n.isPresent());
+    n.ifPresent(number -> {
+      assertNotNull(number.getDigit());
+      assertNotNull(number.getNumberBetween());
+      assertNotNull(number.getRandomDigit());
+      assertNotNull(number.getRandomDigitNonZero());
+      assertNotNull(number.getRandomNumber());
+      assertNotNull(number.getRandomNumber2());
+      assertNotNull(number.getRandomDouble());
+    });
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNumberBetweenException() {
+    FakerGen.create(NumbersBetweenException.class);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNumberDoubleException() {
+    FakerGen.create(NumbersDoubleException.class);
   }
 
   @Test

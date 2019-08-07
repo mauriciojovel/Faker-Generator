@@ -86,7 +86,7 @@ public class FakerGen {
           } else if (f.isAnnotationPresent(FakeAvatar.class)) {
             FakeAvatar fakeAvatar = f.getAnnotation(FakeAvatar.class);
             f.set(data, faker.avatar().image());
-          }else if(f.isAnnotationPresent(FakeName.class)) {
+          } else if(f.isAnnotationPresent(FakeName.class)) {
             FakeName fakerName = f.getAnnotation(FakeName.class);
 
             switch (fakerName.value()) {
@@ -116,6 +116,45 @@ public class FakerGen {
                 break;
               case USERNAME:
                 f.set(data, faker.name().username());
+                break;
+            }
+          } else if(f.isAnnotationPresent(FakeNumber.class)) {
+            FakeNumber fakeNumber = f.getAnnotation(FakeNumber.class);
+            switch (fakeNumber.value()) {
+              case DIGIT:
+                if(fakeNumber.count() > 0) {
+                  f.set(data, faker.number().digits(fakeNumber.count()));
+
+                } else {
+                  f.set(data, faker.number().digit());
+                }
+                break;
+              case NUMBER_BETWEEN:
+                if(fakeNumber.minValue() >= 0 && fakeNumber.maxValue() >= 0) {
+                  f.set(data, faker.number().numberBetween(fakeNumber.minValue(), fakeNumber.maxValue()));
+                } else {
+                  throw new IllegalArgumentException("You need set the values min value and max value to use this function");
+                }
+                break;
+              case RANDOM_DIGIT:
+                f.set(data, faker.number().randomDigit());
+                break;
+              case RANDOM_DIGIT_NON_ZERO:
+                f.set(data, faker.number().randomDigitNotZero());
+                break;
+              case RANDOM_DOUBLE:
+                if(fakeNumber.maxNumberOfDecimal() > -1 && fakeNumber.minValue() >= 0 && fakeNumber.maxValue() >= 0) {
+                  f.set(data, faker.number().randomDouble(fakeNumber.maxNumberOfDecimal(), fakeNumber.minValue(), fakeNumber.maxValue()));
+                } else {
+                  throw new IllegalArgumentException("You need set the values, maxNumberOfDecimal, minValue and maxValue");
+                }
+                break;
+              case RANDOM_NUMBER:
+                if(fakeNumber.count() > 0) {
+                  f.set(data, faker.number().randomNumber(fakeNumber.count(), fakeNumber.strict()));
+                } else {
+                  f.set(data, faker.number().randomNumber());
+                }
                 break;
             }
           }
