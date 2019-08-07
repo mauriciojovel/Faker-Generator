@@ -35,6 +35,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <java.version>1.8</java.version>
+    <maven.compiler.release>8</maven.compiler.release>
     <slf4j.version>1.7.26</slf4j.version>
   </properties>
 
@@ -88,6 +89,7 @@
           <configuration>
             <source>${maven.compiler.source}</source>
             <target>${maven.compiler.target}</target>
+            <release>${maven.compiler.release}</release>
           </configuration>
         </plugin>
         <plugin>
