@@ -9,7 +9,26 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>faker-generator</name>
-  <url>https://faker.mauriciojovel.dev</url>
+  <url>https://github.com/mauriciojovel/Faker-Generator</url>
+  <developers>
+    <developer>
+      <name>Mauricio Jovel</name>
+      <email>mauriciojovel@gmail.com</email>
+      <url>https://mauriciojovel.dev/</url>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/mauriciojovel/Faker-Generator</url>
+    <connection>scm:git:git@github.com:mauriciojovel/Faker-Generator.git</connection>
+    <developerConnection>scm:git:git@github.com:mauriciojovel/Faker-Generator.git</developerConnection>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
