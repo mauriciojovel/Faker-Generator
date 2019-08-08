@@ -1,8 +1,11 @@
 language: java
 jdk:
 - openjdk8
+before_deploy:
+  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+  - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
 after_success:
-- mvn clean test jacoco:report coveralls:report
+- mvn test jacoco:report coveralls:report
 env:
   global:
   - secure: tqgiejQGOqV6zmRdhs19vrjiIiP72kk8bi7hj6MUh4UtJogHmBJxCsmaH+ewVEzHW1HM0LzClyMeACSHKAYp1vVlzKfmlveMN4y8emeguS76ysa24pOgl5nkUTtnzQZ/50m8b/mKKWhcjXCQQbutrYpT/T/1xkvOaDuogxQ8Cn8+IX+tcEjaniverqtRS7VPo2xGVUdhhWbhsKjefJtCFUsjSeig7p/2g8pLxKk91tyod/YSBHpfMiQozhU6avLOLJn1RdS6AB5UrurkfdsokucqT4nxUDjsg8pzMwQqDxXXSsV4PJhWv8xhiBvCo8lWlJT4wsVVqSYA8lnbhptHL7aRLDU2M3/AjVvIvYar7q+rRJ8b2HWnJgZYzuSXYnlqQz1yC9UYx93ZPImSMnw+QTDYjrno4m4YOZR77UrASxIQE6rI4u3ybTAYViepyY4PvEu8OCZwVjwO0V6uKgSwbBa5DZQb4c2tBVoXRtaAhbduxSisbV4/cr9HUhjej7205Oe993gACuQVjjgBo/1DS/pRzDnvHj9hvLLXu2pC/ajmF/5vAtnTXkbPyn8j8RnxVhbJ340RDyNtFVK81aocGjYi6C09EucK7q1JMDY92BrD2OfEZTl5mxhE+PJ1rtcsnPq9++psyBVZE8PGG+4abpfQaDWzqCsCHQOzGopPVhQ=
@@ -11,3 +14,12 @@ env:
 before_install:
 - openssl aes-256-cbc -K $encrypted_ad5f3cf39d40_key -iv $encrypted_ad5f3cf39d40_iv
   -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+deploy:
+  provider: releases
+  api_key:
+    secure: KtA96488nHb8rNQFaIHRbU4mjSC7nhA5Ea3KQGIKsTyMXB9m9iBeNLVMCKAGaxUcIXUxLinM8YB4w7oaXoKu+6LuhEb0UM2E+xlBN/7rjxn2kcImWB7EGrF2SlV667x3O76YDiK4/n+TRww4TjdrykeOJkCzrwmQ0HArGglLQTeSiV/3RFv9ejS6xe85XuddAtpsi7fcpfrMwN/1l671H/hkoj9Q41xtZ4X4FSmlL4i8lNm37LZLpUyPK9SxIF+dgNPZ8OPCgVG/uxZsdZEv8v4jdm3njpCbW2iyAwC+VdaFRw5BIT42rDn6kVC4Kb70dDzu8/DcusOZWhnKq8KA20Lr9jtJV1H+v9KDrMUmGF7FkJMMxisEbumBUeMtTC9XACuSMJrDxSwJhpHF9VX4CrzEJbqYKtDbp/V5JI4hLV4fa+JEHny64G/PWXQHEMutjkhw7EM+IaS/K1gSmvv4KTPcl/El/SQ7FxwcdpzEfagDsHqqWdrjgpwex4Fjlp3xhTTxIHtYVG1G38DGc/M7M0zL0Gfv0MjnIrniUmHgG8a/fr6eLvoT2FA+iVSY3u6ZqxcaaG+DpgZmaKt8rYHIX5Pw+2/m8+yUYmjGCbe15rR6f1/KSlogdGJPxe4mZTv6nVcTt+eS7oZFZvjvXx84gdEUmbAGFu1cvXaSncgnjKw=
+  file: target/faker-generator-$project-version.jar
+  skip_cleanup: true
+  on:
+    repo: mauriciojovel/Faker-Generator
+  name: $project_version
