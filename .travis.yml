@@ -21,6 +21,6 @@ deploy:
   file: target/faker-generator-$project-version.jar
   skip_cleanup: true
   on:
-#    branch: master
+    branch: master
     repo: mauriciojovel/Faker-Generator
   name: $project_version
