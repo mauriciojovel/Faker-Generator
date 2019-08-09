@@ -9,10 +9,9 @@ before_deploy:
 - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip
   -Dmaven.javadoc.skip=true -B -V
-script: mvn clean deploy --settings deployment/settings.xml -DskipTests=true -B -U
-  -Prelease
 after_success:
 - mvn clean test jacoco:report coveralls:report
+- test $TRAVIS_BRANCH = "master" && mvn clean deploy --settings deployment/settings.xml -DskipTests=true -B -U -Prelease
 env:
   global:
   - secure: tqgiejQGOqV6zmRdhs19vrjiIiP72kk8bi7hj6MUh4UtJogHmBJxCsmaH+ewVEzHW1HM0LzClyMeACSHKAYp1vVlzKfmlveMN4y8emeguS76ysa24pOgl5nkUTtnzQZ/50m8b/mKKWhcjXCQQbutrYpT/T/1xkvOaDuogxQ8Cn8+IX+tcEjaniverqtRS7VPo2xGVUdhhWbhsKjefJtCFUsjSeig7p/2g8pLxKk91tyod/YSBHpfMiQozhU6avLOLJn1RdS6AB5UrurkfdsokucqT4nxUDjsg8pzMwQqDxXXSsV4PJhWv8xhiBvCo8lWlJT4wsVVqSYA8lnbhptHL7aRLDU2M3/AjVvIvYar7q+rRJ8b2HWnJgZYzuSXYnlqQz1yC9UYx93ZPImSMnw+QTDYjrno4m4YOZR77UrASxIQE6rI4u3ybTAYViepyY4PvEu8OCZwVjwO0V6uKgSwbBa5DZQb4c2tBVoXRtaAhbduxSisbV4/cr9HUhjej7205Oe993gACuQVjjgBo/1DS/pRzDnvHj9hvLLXu2pC/ajmF/5vAtnTXkbPyn8j8RnxVhbJ340RDyNtFVK81aocGjYi6C09EucK7q1JMDY92BrD2OfEZTl5mxhE+PJ1rtcsnPq9++psyBVZE8PGG+4abpfQaDWzqCsCHQOzGopPVhQ=
