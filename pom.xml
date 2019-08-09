@@ -159,7 +159,7 @@
             <configuration>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
           </plugin>
           <!-- To generate javadoc -->
@@ -213,12 +213,12 @@
   <distributionManagement>
     <!--  Publish versioned releases here  -->
     <repository>
-      <id>nexus-release</id>
+      <id>ossrh</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <!--  Publish snapshots here  -->
     <snapshotRepository>
-      <id>nexus-snapshot</id>
+      <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
