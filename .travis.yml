@@ -5,6 +5,7 @@ before_deploy:
   - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
   - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
   - git tag -a v$project_version -m "Tag version $project_version"
+  - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 after_success:
 - mvn clean test jacoco:report coveralls:report
 env:
