@@ -23,6 +23,7 @@ before_install:
 - echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
 - echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
 - gpg --list-keys
+- gpg --version
 cache:
   directories:
     - ~/.m2/repository
