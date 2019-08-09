@@ -7,10 +7,10 @@ before_deploy:
   -v '\[')
 - git tag -a v$project_version-$TRAVIS_BUILD_NUMBER -m "Tag version $project_version-$TRAVIS_BUILD_NUMBER"
 - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-install:
-  mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
-script:
-  mvn clean deploy --settings deployment/settings.xml -DskipTests=true -B -U -Prelease
+install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip
+  -Dmaven.javadoc.skip=true -B -V
+script: mvn clean deploy --settings deployment/settings.xml -DskipTests=true -B -U
+  -Prelease
 after_success:
 - mvn clean test jacoco:report coveralls:report
 env:
@@ -20,11 +20,7 @@ env:
   - secure: LudAHHNLqrO44uiGSJUbiFZn1Hp6TpagMCtOCPsErcmO57aIhw+sgOMLALh5+IQA314yMOkyg2RgooByZENv+pvZELPToU+uLq9MX2zM8/7ObMvdYApOroeVF3yg9secpPgaNu2nD8Zxrm43+xqfus7vLh/sPUANIPvpmjmMTxGuvdVzZnmVNcE3hlIFq5NBu3FZgnLtx1X04YVksOoQtjGMhjL5zhWmT1RhfNQpf1bZrA+en311nG1zUOyfQ0/5VOXvtFFmu8dsHOsxEpnUe8zmrzZwt9qClPjtL95inlwJcNxv+GmcCi1C7vN7OTnESampHku5u67bMgtX3q5DlmyQSfp2O1K7dSPcya+iB6VqjR97k3mWNAR/MLQfDuKCJXa/8xsTiOGnNdw33DaflAtze9zk0O2dyln6KfCaTwc71ADLRffFQKMsdPZg+mz/SBwf/Qwbyr56rZap6AS8GwwnxXXAv7F/HQShwd4swNJddVUodTRO4R+kqMrV0+9Qk8aJdj8Y+PyodOHLiUkewUkWxfSB5OgcbjO6H7QTRHgLbXB9xhVPnWvv2f/CE7whY4Jm8SADYDxMeHlbeNvpdbsBMZK4ETCHMRFE8/UkHxiray5RYncy/UxYCir38rPmxKK7mW14MHIdrUUtdgOt45CRhQXXIJCoxnSLhptEIgs=
   - secure: w62CTcGHbM4XC8m+4+vQ4axffCczDO6gaR5gAogil1ZvnMfrBi/rQsRO/o/2K7qeFVUG5N7nPbZ3SsBeK59VygurFeDxoLwxddz18t2J8jwWOCCRsrP4VQG5vb4a0dP/Mxj475htfkjr8FaPYLHY8EBl7hwCPXzhXeY/GQWQZF2yKNd9c7VLUZlnUsLLGt4XB5eR6EQcaXxV3l8Ke2D6DAg8jsiagYbNWDVzU4vB2OtVamMWe5xXRAMy2Pry2gEmoxJm/skfkb4kf4BnxnMmwzuJE1w9bD17NbZQEH8ruvT53lgiHKAEPJ89dfqvXIOJlMepxpQJ3BdnLBszLCA8aofsJhGZB+/WGcaBeGUlaNXS7Q26mChwgrWvPpGhQKcNMxvyqUxqCvOiqBsSrloXLpFmnGbjqx9sgSb5whXxdoItIpphV0ao9Hqij9R2pc4DnUxxpdhxcJloTyROXWPMMthV+0AVG2Nc3ndUxPRI6QT5EWPkeAeSiEeRrH0Ytd7xCKt/556QTd3UI6n3iyGYbDTx202OkHEBYSiPAe/1Ewx1bVxskn1URgotDtOKjh80ju0nAvzDUsyeLRXUpuvvmmzM4Pr5VatXY5H9vkk4DLLiJAsan5qxoAh/v1NFVY9aEII6YHK8LiCKb2/azAey31oVkkYU/PUNzeJw9wn90LM=
 before_install:
-- openssl aes-256-cbc -K $encrypted_ad5f3cf39d40_key -iv $encrypted_ad5f3cf39d40_iv
-  -in deployment/secretkey.asc.enc -out deployment/secretkey.asc -d
-- openssl aes-256-cbc -K $encrypted_ad5f3cf39d40_key -iv $encrypted_ad5f3cf39d40_iv
-  -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
-- cat deployment/signingkey.asc | base64 --decode | gpg --import
+- echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
 - echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
 deploy:
   provider: releases
