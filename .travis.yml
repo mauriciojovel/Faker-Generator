@@ -14,7 +14,6 @@ before_install:
 # https://stackoverflow.com/a/19463607
 - echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
 - echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
-- gpg --list-keys
 install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip
   -Dmaven.javadoc.skip=true -B -V
 after_success:
