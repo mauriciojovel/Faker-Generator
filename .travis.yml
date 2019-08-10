@@ -1,31 +1,32 @@
 language: java
 jdk:
 - openjdk8
-before_deploy:
-- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
-  -v '\[')
-- git tag -a v$project_version-$TRAVIS_BUILD_NUMBER -m "Tag version $project_version-$TRAVIS_BUILD_NUMBER"
-- mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip
-  -Dmaven.javadoc.skip=true -B -V
-after_success:
-- mvn clean test jacoco:report coveralls:report
-- test $TRAVIS_BRANCH = "master" && mvn clean deploy --settings deployment/settings.xml
-  -DskipTests=true -B -V -P release
 env:
   global:
   - secure: tqgiejQGOqV6zmRdhs19vrjiIiP72kk8bi7hj6MUh4UtJogHmBJxCsmaH+ewVEzHW1HM0LzClyMeACSHKAYp1vVlzKfmlveMN4y8emeguS76ysa24pOgl5nkUTtnzQZ/50m8b/mKKWhcjXCQQbutrYpT/T/1xkvOaDuogxQ8Cn8+IX+tcEjaniverqtRS7VPo2xGVUdhhWbhsKjefJtCFUsjSeig7p/2g8pLxKk91tyod/YSBHpfMiQozhU6avLOLJn1RdS6AB5UrurkfdsokucqT4nxUDjsg8pzMwQqDxXXSsV4PJhWv8xhiBvCo8lWlJT4wsVVqSYA8lnbhptHL7aRLDU2M3/AjVvIvYar7q+rRJ8b2HWnJgZYzuSXYnlqQz1yC9UYx93ZPImSMnw+QTDYjrno4m4YOZR77UrASxIQE6rI4u3ybTAYViepyY4PvEu8OCZwVjwO0V6uKgSwbBa5DZQb4c2tBVoXRtaAhbduxSisbV4/cr9HUhjej7205Oe993gACuQVjjgBo/1DS/pRzDnvHj9hvLLXu2pC/ajmF/5vAtnTXkbPyn8j8RnxVhbJ340RDyNtFVK81aocGjYi6C09EucK7q1JMDY92BrD2OfEZTl5mxhE+PJ1rtcsnPq9++psyBVZE8PGG+4abpfQaDWzqCsCHQOzGopPVhQ=
   - secure: JKnH+Yf8A0ZIFg7+gRd6HSznRj//xBIudaexc/K+QRQmAoAYvCWDFcQh3ybwDC2NCsNcEqDXj/QCzJOKlVTfDbndmJRarnp+B8vYk/IKOs/z+Bxcpa7KH/ljPeERQIAziycNVbMe5JS3lgCLVZYj9eTj8XEfjPsI4tnTlt303gns208P6MKxXG3bcIBQd0cqguRc88qMy2kfSjOY7fkcwhf9kcBvIF0dZt6orqn2C+JX/jb8sJ/xVRds32ROh20pWNJMDA6nF05VDOUqO5fT6tG8jvD0ja/lTrT07uAGNnUjEEktmw/My6zBOPvDlb8i0nH8Iy217mS/7AoU98wVRyFDhUL9PGh+uzloQpvntX7PwAFithZw1mHQSDn11oybfZjJVSH+oLmTEmL+GDO8XeO5WTp9a/453mbco+9gfhTMzfGucvb0t9i7H3ddJ1LoN0tyo9Z1ROtdHInGVM/B2Ohp3YImEqmNc4kXhVrj1RFdtEqKxg1LeJh7EzUTQiLP7PSajhE/OU0c7wtTkkB9PGxYbePlDK4YsL72UDSyNhnP35/CsuCuimuK+XuQKzDj6E5KvTL2C+lvfu+jkrf3KJkq64ImcrX003DomxsDjKBf+1OdFHe1N0d1gFbvmQPc2fmvIaMLVx4iIAdQuRKDlHGddMGDlGNn9DlzE9ZoFGI=
   - secure: LudAHHNLqrO44uiGSJUbiFZn1Hp6TpagMCtOCPsErcmO57aIhw+sgOMLALh5+IQA314yMOkyg2RgooByZENv+pvZELPToU+uLq9MX2zM8/7ObMvdYApOroeVF3yg9secpPgaNu2nD8Zxrm43+xqfus7vLh/sPUANIPvpmjmMTxGuvdVzZnmVNcE3hlIFq5NBu3FZgnLtx1X04YVksOoQtjGMhjL5zhWmT1RhfNQpf1bZrA+en311nG1zUOyfQ0/5VOXvtFFmu8dsHOsxEpnUe8zmrzZwt9qClPjtL95inlwJcNxv+GmcCi1C7vN7OTnESampHku5u67bMgtX3q5DlmyQSfp2O1K7dSPcya+iB6VqjR97k3mWNAR/MLQfDuKCJXa/8xsTiOGnNdw33DaflAtze9zk0O2dyln6KfCaTwc71ADLRffFQKMsdPZg+mz/SBwf/Qwbyr56rZap6AS8GwwnxXXAv7F/HQShwd4swNJddVUodTRO4R+kqMrV0+9Qk8aJdj8Y+PyodOHLiUkewUkWxfSB5OgcbjO6H7QTRHgLbXB9xhVPnWvv2f/CE7whY4Jm8SADYDxMeHlbeNvpdbsBMZK4ETCHMRFE8/UkHxiray5RYncy/UxYCir38rPmxKK7mW14MHIdrUUtdgOt45CRhQXXIJCoxnSLhptEIgs=
   - secure: A7BaO6zUrU4a+FbtjAtdbiyw7hdX26WcMv0TmxqUbFmIU21QnUCs+VRveBmpcex8SZ0+3qeUhG+MOv4yElnQPtS9UGXL1Ugn/CLUZKn9KkWXIKQ484FGrVMfl9WZVmTN714AvPBwlqdRQykZ2i8wrYAPMOcwugGChMMkaxhaZEh6O0YGR/uaZ4dE1guQEE6K54rtfVnm6076sciDNr1jwdmn9+3Luytz2hqXca6yd26b6zxgLT+w8S3VmrdCvgZ+BwtH7Yj63eqWH1ZEoO2SBLshC910phZWvXdF4qb0Gbajo32IzaS7XGfNMQFYWL42LSoVl73lgS9R5ox3/wUW9G9cSPXuPJdCKUh4Mcupxm5IvErScRsSzOSP/iZXLHTmBw2fksIS1uYqXiO26lUAIdPVkhmhkEYR/oXHwkWGEnGQtdbwFX5AlyQrCytoz3JJGPrLT1SPFgaIcTI+ZMV1yDOlkBCw3TO+9GF48f7hZdAT1RdBJL0KYMxS7nZ/RLtzGprW0EPDJ4W7uXTRMegJRsGCyEryGiPYEQLAvCsWk1C4DKAnofEjDtKsUQwhNWXhzHHPXq5tN0DjGDjOaS0gCQLFVb8e8jRamSYG8jlEXCAOmbs1jD20f47Cra9L5Jo+/dnbV/8zwVB823K78gNMrhGeu4vdrmlypkDlm/Olixs=
-before_install:
-- echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
-- echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
-- gpg --list-keys
 cache:
   directories:
     - ~/.m2/repository
+before_install:
+# https://stackoverflow.com/a/19463607
+- echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
+- echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
+- gpg --list-keys
+install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip
+  -Dmaven.javadoc.skip=true -B -V
+after_success:
+- mvn clean test jacoco:report coveralls:report
+- test $TRAVIS_BRANCH = "master" && mvn clean deploy --settings deployment/settings.xml
+  -DskipTests=true -B -V -P release
+before_deploy:
+- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
+  -v '\[')
+- git tag -a v$project_version-$TRAVIS_BUILD_NUMBER -m "Tag version $project_version-$TRAVIS_BUILD_NUMBER"
+- mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 deploy:
   provider: releases
   api_key:
