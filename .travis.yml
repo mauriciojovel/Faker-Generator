@@ -14,17 +14,17 @@ before_install:
 # https://stackoverflow.com/a/19463607
 - echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
 - echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
-install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip
-  -Dmaven.javadoc.skip=true -B -V
+- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+# https://maven.apache.org/maven-ci-friendly.html
+- if [[ $TRAVIS_BRANCH == release/* ]] ; then export CHANGE_LIST=-$TRAVIS_BUILD_NUMBER-SNAPSHOT; else CHANGE_LIST=; fi
+- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')$CHANGE_LIST
+- mvn version:set -DnewVersion=$project_version
+install: mvn --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 after_success:
 - mvn clean test jacoco:report coveralls:report
-- test $TRAVIS_BRANCH = "master" && mvn clean deploy --settings deployment/settings.xml
-  -DskipTests=true -B -V -P release
+- test $TRAVIS_BRANCH = "master" && mvn clean deploy --settings deployment/settings.xml -DskipTests=true -B -V -P release
 before_deploy:
-- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
-  -v '\[')
-- git tag -a v$project_version-$TRAVIS_BUILD_NUMBER -m "Tag version $project_version-$TRAVIS_BUILD_NUMBER"
+- git tag -a v$project_version -m "Tag version $project_version"
 - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 deploy:
   provider: releases
