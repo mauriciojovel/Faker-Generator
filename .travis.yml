@@ -9,7 +9,7 @@ env:
   - secure: A7BaO6zUrU4a+FbtjAtdbiyw7hdX26WcMv0TmxqUbFmIU21QnUCs+VRveBmpcex8SZ0+3qeUhG+MOv4yElnQPtS9UGXL1Ugn/CLUZKn9KkWXIKQ484FGrVMfl9WZVmTN714AvPBwlqdRQykZ2i8wrYAPMOcwugGChMMkaxhaZEh6O0YGR/uaZ4dE1guQEE6K54rtfVnm6076sciDNr1jwdmn9+3Luytz2hqXca6yd26b6zxgLT+w8S3VmrdCvgZ+BwtH7Yj63eqWH1ZEoO2SBLshC910phZWvXdF4qb0Gbajo32IzaS7XGfNMQFYWL42LSoVl73lgS9R5ox3/wUW9G9cSPXuPJdCKUh4Mcupxm5IvErScRsSzOSP/iZXLHTmBw2fksIS1uYqXiO26lUAIdPVkhmhkEYR/oXHwkWGEnGQtdbwFX5AlyQrCytoz3JJGPrLT1SPFgaIcTI+ZMV1yDOlkBCw3TO+9GF48f7hZdAT1RdBJL0KYMxS7nZ/RLtzGprW0EPDJ4W7uXTRMegJRsGCyEryGiPYEQLAvCsWk1C4DKAnofEjDtKsUQwhNWXhzHHPXq5tN0DjGDjOaS0gCQLFVb8e8jRamSYG8jlEXCAOmbs1jD20f47Cra9L5Jo+/dnbV/8zwVB823K78gNMrhGeu4vdrmlypkDlm/Olixs=
 cache:
   directories:
-    - ~/.m2/repository
+    - $HOME/.m2
 before_install:
 # https://stackoverflow.com/a/19463607
 - echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
