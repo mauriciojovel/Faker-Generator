@@ -6,7 +6,7 @@
 
   <groupId>io.github.mauriciojovel</groupId>
   <artifactId>faker-generator</artifactId>
-  <version>1.0</version>
+  <version>1.0.0</version>
   <description>A simple wrapper library to faker library</description>
 
   <name>faker-generator</name>
