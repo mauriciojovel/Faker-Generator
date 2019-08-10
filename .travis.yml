@@ -36,3 +36,4 @@ deploy:
   on:
     branch: master
     repo: mauriciojovel/Faker-Generator
+
