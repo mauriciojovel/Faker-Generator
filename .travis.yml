@@ -18,10 +18,10 @@ before_install:
 # https://maven.apache.org/maven-ci-friendly.html
 - if [[ $TRAVIS_BRANCH == release/* ]] ; then export CHANGE_LIST=-$TRAVIS_BUILD_NUMBER-SNAPSHOT; else CHANGE_LIST=; fi
 - export project_version=$(mvn help:evaluate -N -Dexpression=revision|grep -v '\[')
-install: mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST --settings deployment/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+install: mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 after_success:
 - mvn clean test jacoco:report coveralls:report
-- if [[ "master" =~ master|release/* ]] ; then mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST clean deploy --settings deployment/settings.xml -DskipTests=true -B -V -P release; fi
+- if [[ "master" =~ master|release/* ]] ; then mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST clean deploy --settings .maven.xml -DskipTests=true -B -V -P release; fi
 before_deploy:
 - git tag -a v$project_version -m "Tag version $project_version"
 - mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
