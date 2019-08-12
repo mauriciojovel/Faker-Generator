@@ -65,6 +65,36 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testInternet() {
+    Optional<Internet> i = FakerGen.create(Internet.class);
+    assertTrue(i.isPresent());
+    i.ifPresent(internet -> {
+      assertNotNull(internet.getEmail());
+      assertNotNull(internet.getSafeEmail());
+      assertNotNull(internet.getLocalSafeEmail());
+      assertNotNull(internet.getLocalEmail());
+      assertNotNull(internet.getDomainName());
+      assertNotNull(internet.getDomainWord());
+      assertNotNull(internet.getDomainSuffix());
+      assertNotNull(internet.getUrl());
+      assertNotNull(internet.getAvatar());
+      assertNotNull(internet.getImage());
+      assertNotNull(internet.getImage800x600());
+      assertNotNull(internet.getPassword());
+      assertNotNull(internet.getMacAddress());
+      assertNotNull(internet.getIpv4());
+      assertNotNull(internet.getPrivateIpv4());
+      assertNotNull(internet.getPublicIpv4());
+      assertNotNull(internet.getIpv4Cird());
+      assertNotNull(internet.getIpv6());
+      assertNotNull(internet.getIpv6Cird());
+      assertNotNull(internet.getSlug());
+      assertNotNull(internet.getCustomSlug());
+      assertNotNull(internet.getUuid());
+    });
+  }
+
+  @Test
   public void testArtist() {
     Optional<Artist> g = FakerGen.create(Artist.class);
     assertTrue(g.isPresent());
