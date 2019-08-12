@@ -4,11 +4,10 @@ import static java.util.Arrays.*;
 
 import com.github.javafaker.Faker;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
+
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Class to create a new instance with dummy data.
@@ -155,6 +154,80 @@ public class FakerGen {
                 } else {
                   f.set(data, faker.number().randomNumber());
                 }
+                break;
+            }
+          } else if (f.isAnnotationPresent(FakeInternet.class)) {
+            FakeInternet fakeInternet = f.getAnnotation(FakeInternet.class);
+            switch (fakeInternet.value()) {
+              case EMAIL:
+                if(StringUtils.isEmpty(fakeInternet.localPart())) {
+                  if(fakeInternet.isEmailSafe()) {
+                    f.set(data, faker.internet().safeEmailAddress());
+                  } else {
+                    f.set(data, faker.internet().emailAddress());
+                  }
+                } else {
+                  if(fakeInternet.isEmailSafe()) {
+                    f.set(data, faker.internet().safeEmailAddress(fakeInternet.localPart()));
+                  } else {
+                    f.set(data, faker.internet().emailAddress(fakeInternet.localPart()));
+                  }
+                }
+                break;
+              case DOMAIN_NAME:
+                f.set(data, faker.internet().domainName());
+                break;
+              case DOMAIN_WORD:
+                f.set(data, faker.internet().domainWord());
+                break;
+              case DOMAIN_SUFFIX:
+                f.set(data, faker.internet().domainSuffix());
+                break;
+              case URL:
+                f.set(data, faker.internet().url());
+                break;
+              case AVATAR:
+                f.set(data, faker.internet().avatar());
+                break;
+              case IMAGE:
+                if(fakeInternet.imageWidth() > 0 && fakeInternet.imageHeight() > 0 ) {
+                  f.set(data, faker.internet().image(fakeInternet.imageWidth(), fakeInternet.imageHeight(),
+                          fakeInternet.isImageGray(), fakeInternet.imageText()));
+                } else {
+                  f.set(data, faker.internet().image());
+                }
+                break;
+              case PASSWORD:
+                f.set(data, faker.internet().password(fakeInternet.passwordMin(), fakeInternet.passwordMax(),
+                        fakeInternet.passwordIncludeUppercase(), fakeInternet.passwordIncludeSpecialCharacters()));
+                break;
+              case MAC_ADDRESS:
+                f.set(data, faker.internet().macAddress(fakeInternet.macAddressPrefix()));
+                break;
+              case IPV4:
+                f.set(data, faker.internet().ipV4Address());
+                break;
+              case PRIVATE_IPV4:
+                f.set(data, faker.internet().privateIpV4Address());
+                break;
+              case PUBLIC_IPV4:
+                f.set(data, faker.internet().publicIpV4Address());
+                break;
+              case IPV4_CIDR:
+                f.set(data, faker.internet().ipV4Cidr());
+                break;
+              case IPV6:
+                f.set(data, faker.internet().ipV6Address());
+                break;
+              case IPV6_CIDR:
+                f.set(data, faker.internet().ipV6Cidr());
+                break;
+              case SLUG:
+                f.set(data, faker.internet().slug(fakeInternet.slugWords().length == 0 ? null :
+                        Arrays.asList(fakeInternet.slugWords()), fakeInternet.slugSeparator()));
+                break;
+              case UUID:
+                f.set(data, faker.internet().uuid());
                 break;
             }
           }
