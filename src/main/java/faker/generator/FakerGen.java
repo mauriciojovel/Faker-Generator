@@ -230,6 +230,9 @@ public class FakerGen {
                 f.set(data, faker.internet().uuid());
                 break;
             }
+          } else if (f.isAnnotationPresent(FakePhoneNumber.class)) {
+            FakePhoneNumber fn = f.getAnnotation(FakePhoneNumber.class);
+            f.set(data, faker.numerify(faker.resolve(fn.value().getFakerKey())));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

@@ -136,4 +136,14 @@ public class FakerGenTest {
   public void testChangeLanguage() {
     FakerGen.changeLanguage(Locale.FRANCE);
   }
+
+  @Test
+  public void testPhoneNumber() {
+    Optional<PhoneNumber> p = FakerGen.create(PhoneNumber.class);
+    assertTrue(p.isPresent());
+    p.ifPresent(pn -> {
+      assertNotNull(pn.getPhoneNumber());
+      assertNotNull(pn.getCellPhone());
+    });
+  }
 }
