@@ -187,4 +187,15 @@ public class FakerGenTest {
       assertNotNull(ad.getLongitude());
     });
   }
+
+  @Test
+  public void testBusiness() {
+    Optional<Business> b = FakerGen.create(Business.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bu -> {
+      assertNotNull(bu.getCreditCardExpiry());
+      assertNotNull(bu.getCreditCardNumber());
+      assertNotNull(bu.getCreditCardExpiry());
+    });
+  }
 }

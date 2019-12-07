@@ -306,6 +306,19 @@ public class FakerGen {
                 f.set(data, faker.address().longitude());
                 break;
             }
+          } else if (f.isAnnotationPresent(FakeBusiness.class)) {
+            FakeBusiness b = f.getAnnotation(FakeBusiness.class);
+            switch (b.value()) {
+              case CREDIT_CARD_TYPE:
+                f.set(data, faker.business().creditCardType());
+                break;
+              case CREDIT_CARD_EXPIRY:
+                f.set(data, faker.business().creditCardExpiry());
+                break;
+              case CREDIT_CARD_NUMBER:
+                f.set(data, faker.business().creditCardNumber());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
