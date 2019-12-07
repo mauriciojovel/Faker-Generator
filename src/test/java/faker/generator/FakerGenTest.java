@@ -156,4 +156,35 @@ public class FakerGenTest {
       assertNotNull(po.getLocation());
     });
   }
+
+  @Test
+  public void testAddress() {
+    Optional<Address> a = FakerGen.create(Address.class);
+    assertTrue(a.isPresent());
+    a.ifPresent(ad -> {
+      assertNotNull(ad.getStreetName());
+      assertNotNull(ad.getSecondaryAddress());
+      assertNotNull(ad.getZipCode());
+      assertNotNull(ad.getStreetSuffix());
+      assertNotNull(ad.getStreetPrefix());
+      assertNotNull(ad.getCitySuffix());
+      assertNotNull(ad.getCityPrefix());
+      assertNotNull(ad.getCity());
+      assertNotNull(ad.getCityName());
+      assertNotNull(ad.getState());
+      assertNotNull(ad.getStateAbbr());
+      assertNotNull(ad.getTimeZone());
+      assertNotNull(ad.getCounty());
+      assertNotNull(ad.getCountryCode());
+      assertNotNull(ad.getFullAddress());
+      assertNotNull(ad.getBuildingNumber());
+      assertNotNull(ad.getStreetAddressNumber());
+      assertNotNull(ad.getStreetAddressWithSecondary());
+      assertNotNull(ad.getStreetAddress());
+      assertNotNull(ad.getZipCodeByState());
+//      assertNotNull(ad.getCountryByZipCode());
+      assertNotNull(ad.getLatitude());
+      assertNotNull(ad.getLongitude());
+    });
+  }
 }
