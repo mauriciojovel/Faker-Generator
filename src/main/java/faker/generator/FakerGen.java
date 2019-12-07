@@ -233,6 +233,9 @@ public class FakerGen {
           } else if (f.isAnnotationPresent(FakePhoneNumber.class)) {
             FakePhoneNumber fn = f.getAnnotation(FakePhoneNumber.class);
             f.set(data, faker.numerify(faker.resolve(fn.value().getFakerKey())));
+          } else if (f.isAnnotationPresent(FakePokemon.class)) {
+            FakePokemon po = f.getAnnotation(FakePokemon.class);
+            f.set(data, faker.resolve(po.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

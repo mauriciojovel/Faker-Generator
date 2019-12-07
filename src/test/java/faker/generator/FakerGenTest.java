@@ -146,4 +146,14 @@ public class FakerGenTest {
       assertNotNull(pn.getCellPhone());
     });
   }
+
+  @Test
+  public void testPokemon() {
+    Optional<Pokemon> p = FakerGen.create(Pokemon.class);
+    assertTrue(p.isPresent());
+    p.ifPresent(po -> {
+      assertNotNull(po.getName());
+      assertNotNull(po.getLocation());
+    });
+  }
 }
