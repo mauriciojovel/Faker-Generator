@@ -236,6 +236,76 @@ public class FakerGen {
           } else if (f.isAnnotationPresent(FakePokemon.class)) {
             FakePokemon po = f.getAnnotation(FakePokemon.class);
             f.set(data, faker.resolve(po.value().getFakerKey()));
+          } else if (f.isAnnotationPresent(FakeAddress.class)) {
+            FakeAddress add = f.getAnnotation(FakeAddress.class);
+            switch (add.value()) {
+              case STREET_NAME:
+                f.set(data, faker.address().streetName());
+                break;
+              case SECONDARY_ADDRESS:
+                f.set(data, faker.address().secondaryAddress());
+                break;
+              case ZIP_CODE:
+                f.set(data, faker.address().zipCode());
+                break;
+              case STREET_SUFFIX:
+                f.set(data, faker.address().streetSuffix());
+                break;
+              case STREET_PREFIX:
+                f.set(data, faker.address().streetPrefix());
+                break;
+              case CITY_SUFFIX:
+                f.set(data, faker.address().citySuffix());
+                break;
+              case CITY_PREFIX:
+                f.set(data, faker.address().cityPrefix());
+                break;
+              case CITY:
+                f.set(data, faker.address().city());
+                break;
+              case CITY_NAME:
+                f.set(data, faker.address().cityName());
+                break;
+              case STATE:
+                f.set(data, faker.address().state());
+                break;
+              case STATE_ABBR:
+                f.set(data, faker.address().stateAbbr());
+                break;
+              case TIME_ZONE:
+                f.set(data, faker.address().timeZone());
+                break;
+              case COUNTRY:
+                f.set(data, faker.address().country());
+                break;
+              case COUNTRY_CODE:
+                f.set(data, faker.address().countryCode());
+                break;
+              case FULL_ADDRESS:
+                f.set(data, faker.address().fullAddress());
+                break;
+              case BUILDING_NUMBER:
+                f.set(data, faker.address().buildingNumber());
+                break;
+              case STREET_ADDRESS_NUMBER:
+                f.set(data, faker.address().streetAddressNumber());
+                break;
+              case STREET_ADDRESS:
+                f.set(data, faker.address().streetAddress(add.includeSecondary()));
+                break;
+              case ZIP_CODE_BY_STATE:
+                f.set(data, faker.address().zipCodeByState(add.stateAbbr()));
+                break;
+              case COUNTY_BY_ZIP_CODE:
+                f.set(data, faker.address().countyByZipCode(add.postCode()));
+                break;
+              case LATITUDE:
+                f.set(data, faker.address().latitude());
+                break;
+              case LONGITUDE:
+                f.set(data, faker.address().longitude());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
