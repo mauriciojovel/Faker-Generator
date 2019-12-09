@@ -83,7 +83,7 @@ public class FakerGen {
             FakeArtist fakeArtist = f.getAnnotation(FakeArtist.class);
             f.set(data, faker.resolve(fakeArtist.value().getFakerKey()));
           } else if (f.isAnnotationPresent(FakeAvatar.class)) {
-            FakeAvatar fakeAvatar = f.getAnnotation(FakeAvatar.class);
+//            FakeAvatar fakeAvatar = f.getAnnotation(FakeAvatar.class);
             f.set(data, faker.avatar().image());
           } else if(f.isAnnotationPresent(FakeName.class)) {
             FakeName fakerName = f.getAnnotation(FakeName.class);
@@ -317,6 +317,22 @@ public class FakerGen {
                 break;
               case CREDIT_CARD_NUMBER:
                 f.set(data, faker.business().creditCardNumber());
+                break;
+            }
+          } else if (f.isAnnotationPresent(FakeBook.class)) {
+            FakeBook b = f.getAnnotation(FakeBook.class);
+            switch (b.value()) {
+              case GENRE:
+                f.set(data, faker.book().genre());
+                break;
+              case TITLE:
+                f.set(data, faker.book().title());
+                break;
+              case AUTHOR:
+                f.set(data, faker.book().author());
+                break;
+              case PUBLISHER:
+                f.set(data, faker.book().publisher());
                 break;
             }
           }
