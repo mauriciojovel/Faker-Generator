@@ -319,6 +319,8 @@ public class FakerGen {
                 f.set(data, faker.business().creditCardNumber());
                 break;
             }
+          } else if( f.isAnnotationPresent(FakeChuckNorris.class) ) {
+            f.set(data, faker.chuckNorris().fact());
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

@@ -198,4 +198,13 @@ public class FakerGenTest {
       assertNotNull(bu.getCreditCardExpiry());
     });
   }
+
+  @Test
+  public void testChuckNorris() {
+    Optional<ChuckNorris> c = FakerGen.create(ChuckNorris.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getFact());
+    });
+  }
 }
