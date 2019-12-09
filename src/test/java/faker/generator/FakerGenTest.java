@@ -200,6 +200,15 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testChuckNorris() {
+    Optional<ChuckNorris> c = FakerGen.create(ChuckNorris.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getFact());
+    });
+  }
+
+  @Test
   public void testBook() {
     Optional<Book> b = FakerGen.create(Book.class);
     assertTrue(b.isPresent());

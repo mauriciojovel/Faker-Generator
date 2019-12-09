@@ -319,6 +319,8 @@ public class FakerGen {
                 f.set(data, faker.business().creditCardNumber());
                 break;
             }
+          } else if( f.isAnnotationPresent(FakeChuckNorris.class) ) {
+            f.set(data, faker.chuckNorris().fact());
           } else if (f.isAnnotationPresent(FakeBook.class)) {
             FakeBook b = f.getAnnotation(FakeBook.class);
             switch (b.value()) {
