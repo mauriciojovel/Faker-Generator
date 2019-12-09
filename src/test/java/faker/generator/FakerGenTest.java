@@ -207,4 +207,16 @@ public class FakerGenTest {
       assertNotNull(ch.getFact());
     });
   }
+
+  @Test
+  public void testBook() {
+    Optional<Book> b = FakerGen.create(Book.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+        assertNotNull(bo.getAuthor());
+        assertNotNull(bo.getGenre());
+        assertNotNull(bo.getPublisher());
+        assertNotNull(bo.getTitle());
+    });
+  }
 }

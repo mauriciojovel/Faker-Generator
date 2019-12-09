@@ -83,7 +83,7 @@ public class FakerGen {
             FakeArtist fakeArtist = f.getAnnotation(FakeArtist.class);
             f.set(data, faker.resolve(fakeArtist.value().getFakerKey()));
           } else if (f.isAnnotationPresent(FakeAvatar.class)) {
-            FakeAvatar fakeAvatar = f.getAnnotation(FakeAvatar.class);
+//            FakeAvatar fakeAvatar = f.getAnnotation(FakeAvatar.class);
             f.set(data, faker.avatar().image());
           } else if(f.isAnnotationPresent(FakeName.class)) {
             FakeName fakerName = f.getAnnotation(FakeName.class);
@@ -321,6 +321,22 @@ public class FakerGen {
             }
           } else if( f.isAnnotationPresent(FakeChuckNorris.class) ) {
             f.set(data, faker.chuckNorris().fact());
+          } else if (f.isAnnotationPresent(FakeBook.class)) {
+            FakeBook b = f.getAnnotation(FakeBook.class);
+            switch (b.value()) {
+              case GENRE:
+                f.set(data, faker.book().genre());
+                break;
+              case TITLE:
+                f.set(data, faker.book().title());
+                break;
+              case AUTHOR:
+                f.set(data, faker.book().author());
+                break;
+              case PUBLISHER:
+                f.set(data, faker.book().publisher());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
