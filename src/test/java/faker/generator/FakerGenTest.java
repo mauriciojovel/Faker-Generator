@@ -219,4 +219,14 @@ public class FakerGenTest {
         assertNotNull(bo.getTitle());
     });
   }
+
+  @Test
+  public void testIdNumber() {
+    Optional<IdNumber> i = FakerGen.create(IdNumber.class);
+    assertTrue(i.isPresent());
+    i.ifPresent( in -> {
+      assertNotNull(in.getValidNumber());
+      assertNotNull(in.getInvalidNumber());
+    });
+  }
 }
