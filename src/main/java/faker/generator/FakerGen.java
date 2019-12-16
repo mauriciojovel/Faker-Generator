@@ -337,6 +337,8 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          }else if(f.isAnnotationPresent(FakeColor.class) ) {
+            f.set(data, faker.color().name());
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

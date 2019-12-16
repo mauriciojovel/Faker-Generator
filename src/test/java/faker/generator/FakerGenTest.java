@@ -219,4 +219,14 @@ public class FakerGenTest {
         assertNotNull(bo.getTitle());
     });
   }
+
+  @Test
+  public void testColor() {
+    Optional<Color> c = FakerGen.create(Color.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getColor());
+    });
+  }
+
 }
