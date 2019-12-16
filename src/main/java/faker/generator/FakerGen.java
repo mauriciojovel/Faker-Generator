@@ -337,6 +337,22 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCrypto.class)) {
+            FakeCrypto fc = f.getAnnotation(FakeCrypto.class);
+            switch (fc.value()) {
+              case MD5:
+                f.set(data, faker.crypto().md5());
+                break;
+              case SHA1:
+                f.set(data, faker.crypto().sha1());
+                break;
+              case SHA256:
+                f.set(data, faker.crypto().sha256());
+                break;
+              case SHA512:
+                f.set(data, faker.crypto().sha512());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

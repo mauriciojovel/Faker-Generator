@@ -219,4 +219,15 @@ public class FakerGenTest {
         assertNotNull(bo.getTitle());
     });
   }
+  @Test
+  public void testCrypto() {
+    Optional<Crypto> c = FakerGen.create(Crypto.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( cr -> {
+      assertNotNull(cr.getMd5());
+      assertNotNull(cr.getSha1());
+      assertNotNull(cr.getSha256());
+      assertNotNull(cr.getSha512());
+    });
+  }
 }
