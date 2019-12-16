@@ -337,6 +337,9 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCurrency.class)) {
+            FakeCurrency fc = f.getAnnotation(FakeCurrency.class);
+            f.set(data, faker.resolve(fc.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

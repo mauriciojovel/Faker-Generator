@@ -219,4 +219,15 @@ public class FakerGenTest {
         assertNotNull(bo.getTitle());
     });
   }
+
+  @Test
+  public void testCurrency() {
+    Optional<Currency> c = FakerGen.create(Currency.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getCode());
+      assertNotNull(ch.getName());
+    });
+  }
+
 }
