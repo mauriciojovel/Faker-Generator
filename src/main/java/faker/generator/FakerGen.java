@@ -337,6 +337,34 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCompany.class)) {
+            FakeCompany fc = f.getAnnotation(FakeCompany.class);
+            switch (fc.value()) {
+              case BS:
+                f.set(data, faker.company().bs());
+                break;
+              case BUZZ_WORD:
+                f.set(data, faker.company().buzzword());
+                break;
+              case INDUSTRY:
+                f.set(data, faker.company().industry());
+                break;
+              case LOGO:
+                f.set(data, faker.company().logo());
+                break;
+              case NAME:
+                f.set(data, faker.company().name());
+                break;
+              case PROFESSION:
+                f.set(data, faker.company().profession());
+                break;
+              case SUFFIX:
+                f.set(data, faker.company().suffix());
+                break;
+              case URL:
+                f.set(data, faker.company().url());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
