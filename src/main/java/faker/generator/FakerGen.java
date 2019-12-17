@@ -351,6 +351,26 @@ public class FakerGen {
                 break;
               case SYMPTOMS:
                 f.set(data, faker.medical().symptoms());
+          }else if(f.isAnnotationPresent(FakeCommerce.class)) {
+            FakeCommerce fc = f.getAnnotation(FakeCommerce.class);
+            switch (fc.value()) {
+              case COLOR:
+                f.set(data, faker.commerce().color());
+                break;
+              case DEPARTMENT:
+                f.set(data, faker.commerce().department());
+                break;
+              case PRODUCT_NAME:
+                f.set(data, faker.commerce().productName());
+                break;
+              case MATERIAL:
+                f.set(data, faker.commerce().material());
+                break;
+              case PRICE:
+                f.set(data, faker.commerce().price());
+                break;
+              case PROMOTION_CODE:
+                f.set(data, faker.commerce().promotionCode());
                 break;
             }
           }
