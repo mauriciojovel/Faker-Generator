@@ -221,6 +221,21 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testCommerce() {
+    Optional<Commerce> c = FakerGen.create(Commerce.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getColor());
+      assertNotNull(co.getDepartment());
+      assertNotNull(co.getProductName());
+      assertNotNull(co.getMaterial());
+      assertNotNull(co.getPrice());
+      assertNotNull(co.getPromotionCode());
+    });
+  }
+
+
+  @Test
   public void testColor() {
     Optional<Color> c = FakerGen.create(Color.class);
     assertTrue(c.isPresent());
