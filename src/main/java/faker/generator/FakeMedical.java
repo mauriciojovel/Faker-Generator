@@ -8,4 +8,5 @@ import java.lang.annotation.*;
 @Inherited
 public @interface FakeMedical {
     FakeMedicalType value() default FakeMedicalType.MEDICINE;
+
 }
