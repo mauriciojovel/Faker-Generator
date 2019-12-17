@@ -213,10 +213,22 @@ public class FakerGenTest {
     Optional<Book> b = FakerGen.create(Book.class);
     assertTrue(b.isPresent());
     b.ifPresent(bo -> {
-        assertNotNull(bo.getAuthor());
-        assertNotNull(bo.getGenre());
-        assertNotNull(bo.getPublisher());
-        assertNotNull(bo.getTitle());
+      assertNotNull(bo.getAuthor());
+      assertNotNull(bo.getGenre());
+      assertNotNull(bo.getPublisher());
+      assertNotNull(bo.getTitle());
+    });
+  }
+
+  @Test
+  public void testMedical() {
+    Optional<Medical> b = FakerGen.create(Medical.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+      assertNotNull(bo.getMedicineName());
+      assertNotNull(bo.getDiseaseName());
+      assertNotNull(bo.getHospitalName());
+      assertNotNull(bo.getSymptom());
     });
   }
 }

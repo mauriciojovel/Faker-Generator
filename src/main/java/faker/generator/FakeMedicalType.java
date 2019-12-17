@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeMedicalType {
-    MEDICINE_NAME, DISEASE_NAME,HOSPITAL,SYMPTOMS
+    MEDICINE, DISEASE,HOSPITAL,SYMPTOMS
 }

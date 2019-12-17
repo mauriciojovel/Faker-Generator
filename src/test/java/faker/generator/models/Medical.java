@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class Medical {
 
-    @FakeMedical(FakeMedicalType.MEDICINE_NAME)
+    @FakeMedical(FakeMedicalType.MEDICINE)
     private String medicineName;
 
-    @FakeMedical(FakeMedicalType.DISEASE_NAME)
+    @FakeMedical(FakeMedicalType.DISEASE)
     private String diseaseName;
 
     @FakeMedical(FakeMedicalType.HOSPITAL)

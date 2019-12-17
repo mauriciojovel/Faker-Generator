@@ -340,13 +340,13 @@ public class FakerGen {
           } else if (f.isAnnotationPresent(FakeMedical.class)) {
             FakeMedical b = f.getAnnotation(FakeMedical.class);
             switch (b.value()) {
-              case MEDICINE_NAME:
+              case MEDICINE:
                 f.set(data, faker.medical().medicineName());
                 break;
-              case DISEASE_NAME:
+              case DISEASE:
                 f.set(data, faker.medical().diseaseName());
                 break;
-              case HOSPITAL:m
+              case HOSPITAL:
                 f.set(data, faker.medical().hospitalName());
                 break;
               case SYMPTOMS:
