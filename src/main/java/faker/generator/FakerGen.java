@@ -337,7 +337,24 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          } else if (f.isAnnotationPresent(FakeMedical.class)) {
+            FakeMedical b = f.getAnnotation(FakeMedical.class);
+            switch (b.value()) {
+              case MEDICINE_NAME:
+                f.set(data, faker.medical().medicineName());
+                break;
+              case DISEASE_NAME:
+                f.set(data, faker.medical().diseaseName());
+                break;
+              case HOSPITAL:m
+                f.set(data, faker.medical().hospitalName());
+                break;
+              case SYMPTOMS:
+                f.set(data, faker.medical().symptoms());
+                break;
+            }
           }
+
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
