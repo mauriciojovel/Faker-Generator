@@ -351,6 +351,7 @@ public class FakerGen {
                 break;
               case SYMPTOMS:
                 f.set(data, faker.medical().symptoms());
+          }
           }else if(f.isAnnotationPresent(FakeCommerce.class)) {
             FakeCommerce fc = f.getAnnotation(FakeCommerce.class);
             switch (fc.value()) {

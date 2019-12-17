@@ -220,7 +220,6 @@ public class FakerGenTest {
     });
   }
 
-
   @Test
   public void testMedical() {
     Optional<Medical> b = FakerGen.create(Medical.class);

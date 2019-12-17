@@ -19,5 +19,4 @@ public class Medical {
 
     @FakeMedical(FakeMedicalType.SYMPTOMS)
     private String symptom;
-
 }
