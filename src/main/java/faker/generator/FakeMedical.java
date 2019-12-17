@@ -7,5 +7,6 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Inherited
 public @interface FakeMedical {
-    FakeMedicalType value() default FakeMedicalType.MEDICINE_NAME;
+    FakeMedicalType value() default FakeMedicalType.MEDICINE;
+
 }
