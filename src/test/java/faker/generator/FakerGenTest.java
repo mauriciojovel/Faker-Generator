@@ -233,5 +233,16 @@ public class FakerGenTest {
       assertNotNull(co.getPromotionCode());
     });
   }
-
+    @Test
+    public void testHacker() {
+        Optional<Hacker> h = FakerGen.create(Hacker.class);
+        assertTrue(h.isPresent());
+        h.ifPresent(ha -> {
+            assertNotNull(ha.getAbbreviation());
+            assertNotNull(ha.getAdjective());
+            assertNotNull(ha.getIngVerb());
+            assertNotNull(ha.getNoun());
+            assertNotNull(ha.getVerb());
+        });
+    }
 }

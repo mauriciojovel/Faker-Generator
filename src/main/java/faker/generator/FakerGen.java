@@ -359,6 +359,25 @@ public class FakerGen {
                 f.set(data, faker.commerce().promotionCode());
                 break;
             }
+          } else if(f.isAnnotationPresent(FakeHacker.class)) {
+            FakeHacker fh = f.getAnnotation(FakeHacker.class);
+            switch (fh.value()) {
+              case ABBREVIATION:
+                f.set(data, faker.hacker().abbreviation());
+                break;
+              case NOUN:
+                f.set(data, faker.hacker().noun());
+                break;
+              case ADJECTIVE:
+                f.set(data, faker.hacker().adjective());
+                break;
+              case ING_VERB:
+                f.set(data, faker.hacker().ingverb());
+                break;
+              case VERB:
+                f.set(data, faker.hacker().verb());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
