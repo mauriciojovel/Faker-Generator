@@ -359,6 +359,31 @@ public class FakerGen {
                 f.set(data, faker.commerce().promotionCode());
                 break;
             }
+          } else if(f.isAnnotationPresent(FakeCode.class)) {
+            FakeCode fc = f.getAnnotation(FakeCode.class);
+            switch (fc.value()) {
+              case IS_BN_GS1:
+                f.set(data, faker.code().isbnGs1());
+                break;
+              case IS_BN_GROUP:
+                f.set(data, faker.code().isbnGroup());
+                break;
+              case IS_BN_REGISTRANT:
+                f.set(data, faker.code().isbnRegistrant());
+                break;
+              case IS_BN_10:
+                f.set(data, faker.code().isbn10());
+                break;
+              case IS_BN_13:
+                f.set(data, faker.code().isbn13());
+                break;
+              case E_AN_8:
+                f.set(data, faker.code().ean8());
+                break;
+              case E_AN_13:
+                f.set(data, faker.code().ean13());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
