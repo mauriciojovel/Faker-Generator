@@ -337,7 +337,7 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
-          }else if(f.isAnnotationPresent(FakeCommerce.class)) {
+          } else if(f.isAnnotationPresent(FakeCommerce.class)) {
             FakeCommerce fc = f.getAnnotation(FakeCommerce.class);
             switch (fc.value()) {
               case COLOR:
