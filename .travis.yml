@@ -12,8 +12,8 @@ cache:
     - $HOME/.m2
 before_install:
 # https://stackoverflow.com/a/19463607
-- echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
-- echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
+- if [[ "master" =~ master|release/* ]] ; then echo $GPG_SECRET_KEYS | base64 --decode | gpg --import; fi
+- if [[ "master" =~ master|release/* ]] ; then echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust; fi
 - mvn help:evaluate -N -Dexpression=revision|grep -v '\['
 # https://maven.apache.org/maven-ci-friendly.html
 - if [[ $TRAVIS_BRANCH == release/* ]] ; then export CHANGE_LIST=-$TRAVIS_BUILD_NUMBER-SNAPSHOT; else CHANGE_LIST=; fi
