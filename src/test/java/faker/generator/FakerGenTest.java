@@ -234,7 +234,6 @@ public class FakerGenTest {
     });
   }
 
-
   @Test
   public void testColor() {
     Optional<Color> c = FakerGen.create(Color.class);
@@ -243,5 +242,4 @@ public class FakerGenTest {
       assertNotNull(ch.getColor());
     });
   }
-
 }
