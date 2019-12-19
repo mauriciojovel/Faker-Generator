@@ -337,7 +337,7 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
-          }else if (f.isAnnotationPresent(FakeCompany.class)) {
+          } else if (f.isAnnotationPresent(FakeCompany.class)) {
             FakeCompany fc = f.getAnnotation(FakeCompany.class);
             switch (fc.value()) {
               case BS:
