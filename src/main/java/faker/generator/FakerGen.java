@@ -359,7 +359,7 @@ public class FakerGen {
                 f.set(data, faker.commerce().promotionCode());
                 break;
             }
-          } else if(f.isAnnotationPresent(FakeCode.class)) {
+          } else if(f.isAnnotationPresent(FakeCode.class))  {
             FakeCode fc = f.getAnnotation(FakeCode.class);
             switch (fc.value()) {
               case IS_BN_GS1:
