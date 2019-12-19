@@ -233,5 +233,4 @@ public class FakerGenTest {
       assertNotNull(co.getPromotionCode());
     });
   }
-
 }
