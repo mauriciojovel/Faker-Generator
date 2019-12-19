@@ -337,7 +337,7 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
-          }else if (f.isAnnotationPresent(FakeCrypto.class)) {
+          } else if (f.isAnnotationPresent(FakeCrypto.class)) {
             FakeCrypto fc = f.getAnnotation(FakeCrypto.class);
             switch (fc.value()) {
               case MD5:
