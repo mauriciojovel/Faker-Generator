@@ -234,4 +234,16 @@ public class FakerGenTest {
     });
   }
 
+  @Test
+  public void testMedical() {
+    Optional<Medical> b = FakerGen.create(Medical.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+      assertNotNull(bo.getMedicineName());
+      assertNotNull(bo.getDiseaseName());
+      assertNotNull(bo.getHospitalName());
+      assertNotNull(bo.getSymptom());
+    });
+  }
+
 }
