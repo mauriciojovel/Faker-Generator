@@ -110,6 +110,22 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeStarTrek.class)) {
+            FakeStarTrek fc = f.getAnnotation(FakeStarTrek.class);
+            switch (fc.value()) {
+              case CHARACTER:
+                f.set(data, faker.starTrek().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.starTrek().location());
+                break;
+              case SPECIE:
+                f.set(data, faker.starTrek().specie());
+                break;
+              case VILLAIN:
+                f.set(data, faker.starTrek().villain());
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
