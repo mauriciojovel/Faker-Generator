@@ -230,4 +230,39 @@ public class FakerGenTest {
     });
   }
 
+
+  @Test
+  public void testCommerce() {
+    Optional<Commerce> c = FakerGen.create(Commerce.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getColor());
+      assertNotNull(co.getDepartment());
+      assertNotNull(co.getProductName());
+      assertNotNull(co.getMaterial());
+      assertNotNull(co.getPrice());
+      assertNotNull(co.getPromotionCode());
+    });
+  }
+
+  @Test
+  public void testColor() {
+    Optional<Color> c = FakerGen.create(Color.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getColor());
+    });
+  }
+  @Test
+  public void testMedical() {
+    Optional<Medical> b = FakerGen.create(Medical.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+      assertNotNull(bo.getMedicineName());
+      assertNotNull(bo.getDiseaseName());
+      assertNotNull(bo.getHospitalName());
+      assertNotNull(bo.getSymptom());
+    });
+  }
+
 }

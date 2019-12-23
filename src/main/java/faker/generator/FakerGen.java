@@ -337,9 +337,49 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          } else if(f.isAnnotationPresent(FakeColor.class) ) {
+            f.set(data, faker.color().name());
+          }else if(f.isAnnotationPresent(FakeCommerce.class)) {
+            FakeCommerce fc = f.getAnnotation(FakeCommerce.class);
+            switch (fc.value()) {
+              case COLOR:
+                f.set(data, faker.commerce().color());
+                break;
+              case DEPARTMENT:
+                f.set(data, faker.commerce().department());
+                break;
+              case PRODUCT_NAME:
+                f.set(data, faker.commerce().productName());
+                break;
+              case MATERIAL:
+                f.set(data, faker.commerce().material());
+                break;
+              case PRICE:
+                f.set(data, faker.commerce().price());
+                break;
+              case PROMOTION_CODE:
+                f.set(data, faker.commerce().promotionCode());
+                break;
+            }
           }else if (f.isAnnotationPresent(FakeCurrency.class))  {
             FakeCurrency fc = f.getAnnotation(FakeCurrency.class);
             f.set(data, faker.resolve(fc.value().getFakerKey()));
+          }
+          else if (f.isAnnotationPresent(FakeMedical.class)) {
+            FakeMedical b = f.getAnnotation(FakeMedical.class);
+            switch (b.value()) {
+              case MEDICINE:
+                f.set(data, faker.medical().medicineName());
+                break;
+              case DISEASE:
+                f.set(data, faker.medical().diseaseName());
+                break;
+              case HOSPITAL:
+                f.set(data, faker.medical().hospitalName());
+                break;
+              case SYMPTOMS:
+                f.set(data, faker.medical().symptoms());
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
