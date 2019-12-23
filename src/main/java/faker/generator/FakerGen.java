@@ -96,6 +96,20 @@ public class FakerGen {
               }
             });
           }
+          else if(f.isAnnotationPresent(FakeWeather.class)) {
+            FakeWeather fc = f.getAnnotation(FakeWeather.class);
+            switch (fc.value()) {
+              case DESCRIPTION:
+                f.set(data, faker.weather().description());
+                break;
+              case CELSIUS:
+                f.set(data, faker.weather().temperatureCelsius());
+                break;
+              case FAHRENHEIT:
+                f.set(data, faker.weather().temperatureFahrenheit());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
