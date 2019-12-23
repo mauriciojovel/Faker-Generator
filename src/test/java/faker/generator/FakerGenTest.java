@@ -276,4 +276,15 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testWeather() {
+    Optional<Weather> c = FakerGen.create(Weather.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getDescription());
+      assertNotNull(co.getCelsius());
+      assertNotNull(co.getFahrenheit());
+    });
+  }
 }
