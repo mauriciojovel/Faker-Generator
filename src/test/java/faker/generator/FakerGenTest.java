@@ -287,4 +287,16 @@ public class FakerGenTest {
       assertNotNull(co.getFahrenheit());
     });
   }
+
+  @Test
+  public void testStarTrek() {
+    Optional<StarTrek> c = FakerGen.create(StarTrek.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getSpecie());
+      assertNotNull(co.getVillain());
+    });
+  }
 }
