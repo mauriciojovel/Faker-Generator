@@ -377,6 +377,19 @@ public class FakerGen {
               case SYMPTOMS:
                 f.set(data, faker.medical().symptoms());
             }
+          } else if (f.isAnnotationPresent(FakeFinance.class)) {
+            FakeFinance ff = f.getAnnotation(FakeFinance.class);
+            switch (ff.value()) {
+              case CREDIT_CARD:
+                f.set(data, faker.finance().creditCard());
+                break;
+              case BIC:
+                f.set(data, faker.finance().bic());
+                break;
+              case IBAN:
+                f.set(data, faker.finance().iban());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

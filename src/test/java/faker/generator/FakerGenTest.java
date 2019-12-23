@@ -254,4 +254,14 @@ public class FakerGenTest {
     });
   }
 
+  @Test
+  public void testFinance() {
+    Optional<Finance> f = FakerGen.create(Finance.class);
+    assertTrue(f.isPresent());
+    f.ifPresent(fi -> {
+      assertNotNull(fi.getCreditCard());
+      assertNotNull(fi.getBic());
+      assertNotNull(fi.getIban());
+    });
+  }
 }
