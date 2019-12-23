@@ -235,6 +235,14 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testColor() {
+    Optional<Color> c = FakerGen.create(Color.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getColor());
+    });
+  }
+  @Test
   public void testMedical() {
     Optional<Medical> b = FakerGen.create(Medical.class);
     assertTrue(b.isPresent());
