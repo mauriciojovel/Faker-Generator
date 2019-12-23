@@ -254,4 +254,16 @@ public class FakerGenTest {
     });
   }
 
+  @Test
+  public void testTeam() {
+    Optional<Team> t = FakerGen.create(Team.class);
+    assertTrue(t.isPresent());
+    t.ifPresent(to -> {
+      assertNotNull(to.getName());
+      assertNotNull(to.getCreature());
+      assertNotNull(to.getState());
+      assertNotNull(to.getSport());
+    });
+  }
+
 }
