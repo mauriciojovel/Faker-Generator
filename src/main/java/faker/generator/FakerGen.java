@@ -376,6 +376,18 @@ public class FakerGen {
                 break;
               case SYMPTOMS:
                 f.set(data, faker.medical().symptoms());
+          else if(f.isAnnotationPresent(FakeLebowski.class)) {
+            FakeLebowski fc = f.getAnnotation(FakeLebowski.class);
+            switch (fc.value()) {
+              case ACTOR:
+                f.set(data, faker.lebowski().actor());
+                break;
+              case CHARACTER:
+                f.set(data, faker.lebowski().character());
+                break;
+              case QUOTE:
+                f.set(data, faker.lebowski().quote());
+                break;
             }
           }
         } catch (IllegalAccessException e) {

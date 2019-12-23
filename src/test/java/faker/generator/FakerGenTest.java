@@ -242,6 +242,7 @@ public class FakerGenTest {
       assertNotNull(ch.getColor());
     });
   }
+  
   @Test
   public void testMedical() {
     Optional<Medical> b = FakerGen.create(Medical.class);
@@ -254,4 +255,13 @@ public class FakerGenTest {
     });
   }
 
+  public void testLebowski() {
+    Optional<Lebowski> c = FakerGen.create(Lebowski.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getActor());
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getQuote());
+    });
+  }
 }
