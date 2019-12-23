@@ -254,4 +254,17 @@ public class FakerGenTest {
     });
   }
 
+  @Test
+  public void testBeer() {
+    Optional<Beer> b = FakerGen.create(Beer.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+      assertNotNull(bo.getName());
+      assertNotNull(bo.getStyle());
+      assertNotNull(bo.getHop());
+      assertNotNull(bo.getYeast());
+      assertNotNull(bo.getMalt());
+    });
+  }
+
 }
