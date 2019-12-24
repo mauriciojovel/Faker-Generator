@@ -394,6 +394,14 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeRobin.class)) {
+            FakeRobin fc = f.getAnnotation(FakeRobin.class);
+            switch (fc.value()) {
+              case QUOTE:
+                f.set(data, faker.robin().quote());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }

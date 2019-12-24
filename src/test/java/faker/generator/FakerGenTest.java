@@ -276,4 +276,13 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testRobin() {
+    Optional<Robin> c = FakerGen.create(Robin.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getQuote());
+    });
+  }
 }
