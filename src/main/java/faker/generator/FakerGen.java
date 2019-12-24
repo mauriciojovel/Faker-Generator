@@ -394,6 +394,20 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeUniversity.class)) {
+            FakeUniversity u = f.getAnnotation(FakeUniversity.class);
+            switch (u.value()) {
+              case NAME:
+                f.set(data, faker.university().name());
+                break;
+              case PREFIX:
+                f.set(data, faker.university().prefix());
+                break;
+              case SUFFIX:
+                f.set(data, faker.university().suffix());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
