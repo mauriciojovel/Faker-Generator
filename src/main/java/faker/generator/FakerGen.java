@@ -361,6 +361,9 @@ public class FakerGen {
                 f.set(data, faker.commerce().promotionCode());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCurrency.class))  {
+            FakeCurrency fc = f.getAnnotation(FakeCurrency.class);
+            f.set(data, faker.resolve(fc.value().getFakerKey()));
           }
           else if (f.isAnnotationPresent(FakeMedical.class)) {
             FakeMedical b = f.getAnnotation(FakeMedical.class);
