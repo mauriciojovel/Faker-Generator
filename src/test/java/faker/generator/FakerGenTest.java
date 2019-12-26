@@ -221,6 +221,17 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testCurrency() {
+    Optional<Currency> c = FakerGen.create(Currency.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getCode());
+      assertNotNull(ch.getName());
+    });
+  }
+
+
+  @Test
   public void testCommerce() {
     Optional<Commerce> c = FakerGen.create(Commerce.class);
     assertTrue(c.isPresent());
@@ -242,6 +253,7 @@ public class FakerGenTest {
       assertNotNull(ch.getColor());
     });
   }
+
   @Test
   public void testMedical() {
     Optional<Medical> b = FakerGen.create(Medical.class);
@@ -251,6 +263,16 @@ public class FakerGenTest {
       assertNotNull(bo.getDiseaseName());
       assertNotNull(bo.getHospitalName());
       assertNotNull(bo.getSymptom());
+    });
+  }
+
+  public void testLebowski() {
+    Optional<Lebowski> c = FakerGen.create(Lebowski.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getActor());
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getQuote());
     });
   }
 
@@ -266,5 +288,4 @@ public class FakerGenTest {
       assertNotNull(bo.getMalt());
     });
   }
-
 }
