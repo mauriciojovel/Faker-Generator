@@ -276,4 +276,14 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testStock() {
+    Optional<Stock> s = FakerGen.create(Stock.class);
+    assertTrue(s.isPresent());
+    s.ifPresent(so -> {
+      assertNotNull(so.getNsdqSymbol());
+      assertNotNull(so.getNyseSymbol());
+    });
+  }
 }

@@ -394,6 +394,17 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeStock.class)) {
+            FakeStock s = f.getAnnotation(FakeStock.class);
+            switch (s.value()) {
+              case NSDQ:
+                f.set(data, faker.stock().nsdqSymbol());
+                break;
+              case NYSE:
+                f.set(data, faker.stock().nyseSymbol());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
