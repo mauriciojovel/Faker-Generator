@@ -276,4 +276,13 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testHipster() {
+    Optional<Hipster> h = FakerGen.create(Hipster.class);
+    assertTrue(h.isPresent());
+    h.ifPresent(ho -> {
+      assertNotNull(ho.getWord());
+    });
+  }
 }

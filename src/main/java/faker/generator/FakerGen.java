@@ -394,6 +394,14 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeHipster.class)) {
+            FakeHipster h = f.getAnnotation(FakeHipster.class);
+            switch (h.value()) {
+              case WORD:
+                f.set(data, faker.hipster().word());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
