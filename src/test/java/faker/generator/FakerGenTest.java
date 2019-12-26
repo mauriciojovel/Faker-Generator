@@ -285,7 +285,7 @@ public class FakerGenTest {
       assertNotNull(ho.getCharacter());
       assertNotNull(ho.getLocation());
       assertNotNull(ho.getQuote());
-      assertNotNull(ho.getQuote());
+      assertNotNull(ho.getBook());
     });
   }
 }
