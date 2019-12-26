@@ -276,4 +276,16 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testFood() {
+    Optional<Food> f = FakerGen.create(Food.class);
+    assertTrue(f.isPresent());
+    f.ifPresent(fo -> {
+      assertNotNull(fo.getIngredient());
+      assertNotNull(fo.getSpice());
+      assertNotNull(fo.getMeasurementSizes());
+      assertNotNull(fo.getMeasurements());
+    });
+  }
 }

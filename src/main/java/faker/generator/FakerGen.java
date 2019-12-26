@@ -393,6 +393,9 @@ public class FakerGen {
                 f.set(data, faker.lebowski().quote());
                 break;
             }
+          } else if (f.isAnnotationPresent(FakeFood.class))  {
+            FakeFood ff = f.getAnnotation(FakeFood.class);
+            f.set(data, faker.resolve(ff.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
