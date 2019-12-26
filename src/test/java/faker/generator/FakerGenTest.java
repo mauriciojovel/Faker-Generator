@@ -276,4 +276,17 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testEsports() {
+    Optional<Esports> es = FakerGen.create(Esports.class);
+    assertTrue(es.isPresent());
+    es.ifPresent(eso -> {
+      assertNotNull(eso.getPlayer());
+      assertNotNull(eso.getTeam());
+      assertNotNull(eso.getEvent());
+      assertNotNull(eso.getLeague());
+      assertNotNull(eso.getGame());
+    });
+  }
 }

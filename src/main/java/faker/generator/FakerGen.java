@@ -394,6 +394,26 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeEsports.class)) {
+            FakeEsports es = f.getAnnotation(FakeEsports.class);
+            switch (es.value()) {
+              case PLAYER:
+                f.set(data, faker.esports().player());
+                break;
+              case TEAM:
+                f.set(data, faker.esports().team());
+                break;
+              case EVENT:
+                f.set(data, faker.esports().event());
+                break;
+              case LEAGUE:
+                f.set(data, faker.esports().league());
+                break;
+              case GAME:
+                f.set(data, faker.esports().game());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
