@@ -393,6 +393,9 @@ public class FakerGen {
                 f.set(data, faker.lebowski().quote());
                 break;
             }
+          } else if (f.isAnnotationPresent(FakeGameOfThrones.class)) {
+            FakeGameOfThrones fg = f.getAnnotation(FakeGameOfThrones.class);
+            f.set(data, faker.resolve(fg.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

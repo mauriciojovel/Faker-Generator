@@ -276,4 +276,17 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testGameOfThrones() {
+    Optional<GameOfThrones> g = FakerGen.create(GameOfThrones.class);
+    assertTrue(g.isPresent());
+    g.ifPresent(got -> {
+      assertNotNull(got.getCharacter());
+      assertNotNull(got.getHouses());
+      assertNotNull(got.getCities());
+      assertNotNull(got.getDragons());
+      assertNotNull(got.getQuotes());
+    });
+  }
 }
