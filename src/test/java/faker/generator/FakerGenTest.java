@@ -347,4 +347,18 @@ public class FakerGenTest {
       assertNotNull(to.getSport());
     });
   }
+
+  @Test
+  public void testLeagueOfLegends() {
+    Optional<LeagueOfLegends> c = FakerGen.create(LeagueOfLegends.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getChampion());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getMasteries());
+      assertNotNull(co.getQuote());
+      assertNotNull(co.getRank());
+      assertNotNull(co.getSummonerSpell());
+    });
+  }
 }

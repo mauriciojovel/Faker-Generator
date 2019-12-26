@@ -140,6 +140,29 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeLeagueOfLegends.class)) {
+            FakeLeagueOfLegends fc = f.getAnnotation(FakeLeagueOfLegends.class);
+            switch (fc.value()) {
+              case CHAMPION:
+                f.set(data, faker.leagueOfLegends().champion());
+                break;
+              case LOCATION:
+                f.set(data, faker.leagueOfLegends().location());
+                break;
+              case MASTERIES:
+                f.set(data, faker.leagueOfLegends().masteries());
+                break;
+              case QUOTE:
+                f.set(data, faker.leagueOfLegends().quote());
+                break;
+              case RANK:
+                f.set(data, faker.leagueOfLegends().rank());
+                break;
+              case SUMMONERSPELL:
+                f.set(data,faker.leagueOfLegends().summonerSpell());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
