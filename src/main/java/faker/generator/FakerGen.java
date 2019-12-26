@@ -394,6 +394,14 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeRockBand.class)) {
+            FakeRockBand rb = f.getAnnotation(FakeRockBand.class);
+            switch (rb.value()) {
+              case NAME:
+                f.set(data, faker.rockBand().name());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }

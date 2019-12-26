@@ -276,4 +276,13 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testRockBand() {
+    Optional<RockBand> r = FakerGen.create(RockBand.class);
+    assertTrue(r.isPresent());
+    r.ifPresent(ro -> {
+      assertNotNull(ro.getName());
+    });
+  }
 }
