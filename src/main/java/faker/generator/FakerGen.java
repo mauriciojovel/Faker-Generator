@@ -394,6 +394,22 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeHarryPotter.class));
+          FakeHarryPotter hp = f.getAnnotation(FakeHarryPotter.class);
+          switch (hp.value()) {
+            case CHARACTER:
+              f.set(data, faker.harryPotter().character());
+              break;
+            case LOCATION:
+              f.set(data, faker.harryPotter().location());
+              break;
+            case QUOTE:
+              f.set(data, faker.harryPotter().quote());
+              break;
+            case BOOK:
+              f.set(data, faker.harryPotter().book());
+              break;
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
