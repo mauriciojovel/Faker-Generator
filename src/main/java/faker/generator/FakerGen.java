@@ -394,6 +394,20 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeTwinPeaks.class)) {
+            FakeTwinPeaks tp = f.getAnnotation(FakeTwinPeaks.class);
+            switch (tp.value()) {
+              case CHARACTER:
+                f.set(data, faker.twinPeaks().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.twinPeaks().location());
+                break;
+              case QUOTE:
+                f.set(data, faker.twinPeaks().quote());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }

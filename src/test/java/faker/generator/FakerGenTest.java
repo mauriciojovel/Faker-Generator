@@ -276,4 +276,15 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testTwinPeaks() {
+    Optional<TwinPeaks> t = FakerGen.create(TwinPeaks.class);
+    assertTrue(t.isPresent());
+    t.ifPresent(to -> {
+      assertNotNull(to.getCharacter());
+      assertNotNull(to.getLocation());
+      assertNotNull(to.getQuote());
+    });
+  }
 }
