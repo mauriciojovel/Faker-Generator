@@ -310,4 +310,15 @@ public class FakerGenTest {
       assertNotNull(co.getVillain());
     });
   }
+
+  @Test
+  public void testOverwatch() {
+    Optional<Overwatch> c = FakerGen.create(Overwatch.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getHero());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getQuote());
+    });
+  }
 }
