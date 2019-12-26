@@ -276,4 +276,16 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testHarryPotter() {
+    Optional<HarryPotter> h = FakerGen.create(HarryPotter.class);
+    assertTrue(h.isPresent());
+    h.ifPresent(ho -> {
+      assertNotNull(ho.getCharacter());
+      assertNotNull(ho.getLocation());
+      assertNotNull(ho.getQuote());
+      assertNotNull(ho.getBook());
+    });
+  }
 }

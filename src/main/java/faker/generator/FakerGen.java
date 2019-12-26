@@ -6,6 +6,7 @@ import com.github.javafaker.Faker;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import com.github.javafaker.HarryPotter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -391,6 +392,23 @@ public class FakerGen {
                 break;
               case QUOTE:
                 f.set(data, faker.lebowski().quote());
+                break;
+            }
+          }
+          else if (f.isAnnotationPresent(FakeHarryPotter.class)) {
+            FakeHarryPotter h = f.getAnnotation(FakeHarryPotter.class);
+            switch (h.value()) {
+              case CHARACTER:
+                f.set(data, faker.harryPotter().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.harryPotter().location());
+                break;
+              case QUOTE:
+                f.set(data, faker.harryPotter().quote());
+                break;
+              case BOOK:
+                f.set(data, faker.harryPotter().book());
                 break;
             }
           }
