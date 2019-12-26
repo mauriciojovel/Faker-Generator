@@ -424,6 +424,20 @@ public class FakerGen {
                 f.set(data, faker.starTrek().villain());
             }
           }
+          else if(f.isAnnotationPresent(FakeOverwatch.class)) {
+            FakeOverwatch fc = f.getAnnotation(FakeOverwatch.class);
+            switch (fc.value()) {
+              case HERO:
+                f.set(data, faker.overwatch().hero());
+                break;
+              case LOCATION:
+                f.set(data, faker.overwatch().location());
+                break;
+              case QUOTE:
+                f.set(data, faker.overwatch().quote());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
