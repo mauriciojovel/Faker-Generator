@@ -276,4 +276,14 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testLordOfTheRings() {
+    Optional<LordOfTheRings> lor = FakerGen.create(LordOfTheRings.class);
+    assertTrue(lor.isPresent());
+    lor.ifPresent(loro -> {
+      assertNotNull(loro.getCharacter());
+      assertNotNull(loro.getLocation());
+    });
+  }
 }

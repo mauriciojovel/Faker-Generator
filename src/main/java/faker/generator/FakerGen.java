@@ -394,6 +394,17 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeLordOfTheRings.class)) {
+            FakeLordOfTheRings lor = f.getAnnotation(FakeLordOfTheRings.class);
+            switch (lor.value()) {
+              case CHARACTER:
+                f.set(data, faker.lordOfTheRings().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.lordOfTheRings().location());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
