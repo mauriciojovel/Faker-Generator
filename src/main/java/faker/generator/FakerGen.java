@@ -394,6 +394,26 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeJob.class)) {
+            FakeJob j = f.getAnnotation(FakeJob.class);
+            switch (j.value()) {
+              case FIELD:
+                f.set(data, faker.job().field());
+                break;
+              case SENIORITY:
+                f.set(data, faker.job().seniority());
+                break;
+              case POSITION:
+                f.set(data, faker.job().position());
+                break;
+              case KEY_SKILLS:
+                f.set(data, faker.job().keySkills());
+                break;
+              case TITLE:
+                f.set(data, faker.job().title());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }

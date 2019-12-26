@@ -276,4 +276,17 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testJob() {
+    Optional<Job> j = FakerGen.create(Job.class);
+    assertTrue(j.isPresent());
+    j.ifPresent(jo -> {
+      assertNotNull(jo.getField());
+      assertNotNull(jo.getSeniority());
+      assertNotNull(jo.getPosition());
+      assertNotNull(jo.getKeySkills());
+      assertNotNull(jo.getTitle());
+    });
+  }
 }
