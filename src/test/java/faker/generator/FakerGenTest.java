@@ -276,4 +276,14 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testZelda() {
+    Optional<Zelda> z = FakerGen.create(Zelda.class);
+    assertTrue(z.isPresent());
+    z.ifPresent(zo -> {
+      assertNotNull(zo.getGame());
+      assertNotNull(zo.getCharacter());
+    });
+  }
 }

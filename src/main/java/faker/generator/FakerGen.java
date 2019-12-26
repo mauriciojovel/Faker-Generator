@@ -394,6 +394,17 @@ public class FakerGen {
                 break;
             }
           }
+          else if (f.isAnnotationPresent(FakeZelda.class)) {
+            FakeZelda z = f.getAnnotation(FakeZelda.class);
+            switch (z.value()) {
+              case GAME:
+                f.set(data, faker.zelda().game());
+                break;
+              case CHARACTER:
+                f.set(data, faker.zelda().character());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
