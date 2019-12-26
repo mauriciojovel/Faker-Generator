@@ -276,4 +276,15 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testFile() {
+    Optional<File> f = FakerGen.create(File.class);
+    assertTrue(f.isPresent());
+    f.ifPresent(fo -> {
+      assertNotNull(fo.getExtension());
+      assertNotNull(fo.getMimeType());
+      assertNotNull(fo.getFileName());
+    });
+  }
 }
