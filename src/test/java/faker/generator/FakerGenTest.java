@@ -276,4 +276,17 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testFakeDemographic() {
+    Optional<Demographic> d = FakerGen.create(Demographic.class);
+    assertTrue(d.isPresent());
+    d.ifPresent(de -> {
+      assertNotNull(de.getRace());
+      assertNotNull(de.getEducationalAttainment());
+      assertNotNull(de.getDemonym());
+      assertNotNull(de.getSex());
+      assertNotNull(de.getMaritalStatus());
+    });
+  }
 }
