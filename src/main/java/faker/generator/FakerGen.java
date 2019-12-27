@@ -361,6 +361,9 @@ public class FakerGen {
                 f.set(data, faker.commerce().promotionCode());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCurrency.class))  {
+            FakeCurrency fc = f.getAnnotation(FakeCurrency.class);
+            f.set(data, faker.resolve(fc.value().getFakerKey()));
           }
           else if (f.isAnnotationPresent(FakeMedical.class)) {
             FakeMedical b = f.getAnnotation(FakeMedical.class);
@@ -375,8 +378,25 @@ public class FakerGen {
                 f.set(data, faker.medical().hospitalName());
                 break;
               case SYMPTOMS:
-                f.set(data, faker.medical().symptoms());
+                f.set(data, faker.medical().symptoms());}
+          }
+          else if(f.isAnnotationPresent(FakeLebowski.class)) {
+            FakeLebowski fc = f.getAnnotation(FakeLebowski.class);
+            switch (fc.value()) {
+              case ACTOR:
+                f.set(data, faker.lebowski().actor());
+                break;
+              case CHARACTER:
+                f.set(data, faker.lebowski().character());
+                break;
+              case QUOTE:
+                f.set(data, faker.lebowski().quote());
+                break;
             }
+          }
+          else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
+            FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
+            f.set(data, faker.resolve(ram.value().getFakerKey()));
           }
           else if (f.isAnnotationPresent(FakeTeam.class)) {
             FakeTeam t = f.getAnnotation(FakeTeam.class);
