@@ -287,4 +287,17 @@ public class FakerGenTest {
       assertNotNull(ro.getQuote());
     });
   }
+
+  @Test
+  public void testSuperhero() {
+    Optional<Superhero> s = FakerGen.create(Superhero.class);
+    assertTrue(s.isPresent());
+    s.ifPresent(sh -> {
+      assertNotNull(sh.getName());
+      assertNotNull(sh.getPrefix());
+      assertNotNull(sh.getSuffix());
+      assertNotNull(sh.getPower());
+      assertNotNull(sh.getDescriptor());
+    });
+  }
 }
