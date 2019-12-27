@@ -308,6 +308,16 @@ public class FakerGenTest {
       assertNotNull(co.getHero());
       assertNotNull(co.getLocation());
       assertNotNull(co.getQuote());
+     });
+   }
+
+    public void testRickAndMorty() {
+    Optional<RickAndMorty> r = FakerGen.create(RickAndMorty.class);
+    assertTrue(r.isPresent());
+    r.ifPresent(ro -> {
+      assertNotNull(ro.getCharacter());
+      assertNotNull(ro.getLocation());
+      assertNotNull(ro.getQuote());
     });
   }
 }
