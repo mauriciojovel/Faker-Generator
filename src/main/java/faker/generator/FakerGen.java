@@ -337,6 +337,8 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          } else if(f.isAnnotationPresent(FakeColor.class) ) {
+            f.set(data, faker.color().name());
           } else if(f.isAnnotationPresent(FakeCommerce.class)) {
             FakeCommerce fc = f.getAnnotation(FakeCommerce.class);
             switch (fc.value()) {
@@ -384,6 +386,42 @@ public class FakerGen {
                 f.set(data, faker.code().ean13());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCurrency.class))  {
+            FakeCurrency fc = f.getAnnotation(FakeCurrency.class);
+            f.set(data, faker.resolve(fc.value().getFakerKey()));
+          }
+          else if (f.isAnnotationPresent(FakeMedical.class)) {
+            FakeMedical b = f.getAnnotation(FakeMedical.class);
+            switch (b.value()) {
+              case MEDICINE:
+                f.set(data, faker.medical().medicineName());
+                break;
+              case DISEASE:
+                f.set(data, faker.medical().diseaseName());
+                break;
+              case HOSPITAL:
+                f.set(data, faker.medical().hospitalName());
+                break;
+              case SYMPTOMS:
+                f.set(data, faker.medical().symptoms());}
+          }
+          else if(f.isAnnotationPresent(FakeLebowski.class)) {
+            FakeLebowski fc = f.getAnnotation(FakeLebowski.class);
+            switch (fc.value()) {
+              case ACTOR:
+                f.set(data, faker.lebowski().actor());
+                break;
+              case CHARACTER:
+                f.set(data, faker.lebowski().character());
+                break;
+              case QUOTE:
+                f.set(data, faker.lebowski().quote());
+                break;
+            }
+          }
+          else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
+            FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
+            f.set(data, faker.resolve(ram.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

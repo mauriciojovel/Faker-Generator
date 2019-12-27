@@ -221,6 +221,17 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testCurrency() {
+    Optional<Currency> c = FakerGen.create(Currency.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getCode());
+      assertNotNull(ch.getName());
+    });
+  }
+
+
+  @Test
   public void testCommerce() {
     Optional<Commerce> c = FakerGen.create(Commerce.class);
     assertTrue(c.isPresent());
@@ -246,6 +257,48 @@ public class FakerGenTest {
       assertNotNull(co.getIsbn13());
       assertNotNull(co.getEan8());
       assertNotNull(co.getEan13());
+    });
+  }
+  @Test
+  public void testColor() {
+    Optional<Color> c = FakerGen.create(Color.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getColor());
+    });
+  }
+
+  @Test
+  public void testMedical() {
+    Optional<Medical> b = FakerGen.create(Medical.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+      assertNotNull(bo.getMedicineName());
+      assertNotNull(bo.getDiseaseName());
+      assertNotNull(bo.getHospitalName());
+      assertNotNull(bo.getSymptom());
+    });
+  }
+
+  @Test
+  public void testLebowski() {
+    Optional<Lebowski> c = FakerGen.create(Lebowski.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getActor());
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getQuote());
+    });
+  }
+
+  @Test
+  public void testRickAndMorty() {
+    Optional<RickAndMorty> r = FakerGen.create(RickAndMorty.class);
+    assertTrue(r.isPresent());
+    r.ifPresent(ro -> {
+      assertNotNull(ro.getCharacter());
+      assertNotNull(ro.getLocation());
+      assertNotNull(ro.getQuote());
     });
   }
 }
