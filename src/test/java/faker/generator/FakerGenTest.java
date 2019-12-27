@@ -287,4 +287,16 @@ public class FakerGenTest {
       assertNotNull(ro.getQuote());
     });
   }
+
+  @Test
+  public void testShakespeare() {
+    Optional<Shakespeare> s = FakerGen.create(Shakespeare.class);
+    assertTrue(s.isPresent());
+    s.ifPresent(sh -> {
+      assertNotNull(sh.getHamletQuote());
+      assertNotNull(sh.getAsYouLikeItQuote());
+      assertNotNull(sh.getKingRichardQuote());
+      assertNotNull(sh.getRomeoJulietQuote());
+    });
+  }
 }

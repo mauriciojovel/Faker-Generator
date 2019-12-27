@@ -397,6 +397,22 @@ public class FakerGen {
           else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
             FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
             f.set(data, faker.resolve(ram.value().getFakerKey()));
+          } else if(f.isAnnotationPresent(FakeShakespeare.class)) {
+            FakeShakespeare fs = f.getAnnotation(FakeShakespeare.class);
+            switch (fs.value()) {
+              case HAMLET_QUOTE:
+                f.set(data, faker.shakespeare().hamletQuote());
+                break;
+              case AS_YOU_LIKE_IT_QUOTE:
+                f.set(data, faker.shakespeare().asYouLikeItQuote());
+                break;
+              case KING_RICHARD_QUOTE:
+                f.set(data, faker.shakespeare().kingRichardIIIQuote());
+                break;
+              case ROMEO_JULIET_QUOTE:
+                f.set(data, faker.shakespeare().romeoAndJulietQuote());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
