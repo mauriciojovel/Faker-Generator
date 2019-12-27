@@ -397,6 +397,8 @@ public class FakerGen {
           else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
             FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
             f.set(data, faker.resolve(ram.value().getFakerKey()));
+          } else if(f.isAnnotationPresent(FakeBool.class)) {
+            f.set(data, faker.bool().bool());
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

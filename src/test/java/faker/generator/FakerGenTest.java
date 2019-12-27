@@ -287,4 +287,13 @@ public class FakerGenTest {
       assertNotNull(ro.getQuote());
     });
   }
+
+  @Test
+  public void testBool() {
+    Optional<Bool> b = FakerGen.create(Bool.class);
+    assertTrue(b.isPresent());
+    b.ifPresent(bo -> {
+      assertNotNull(bo.getBool());
+    });
+  }
 }
