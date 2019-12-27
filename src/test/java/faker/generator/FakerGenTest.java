@@ -287,4 +287,25 @@ public class FakerGenTest {
       assertNotNull(ro.getQuote());
     });
   }
+
+  @Test
+  public void testSpace() {
+    Optional<Space> s = FakerGen.create(Space.class);
+    assertTrue(s.isPresent());
+    s.ifPresent(sp -> {
+      assertNotNull(sp.getPlanet());
+      assertNotNull(sp.getMoon());
+      assertNotNull(sp.getGalaxy());
+      assertNotNull(sp.getNebula());
+      assertNotNull(sp.getStarCluster());
+      assertNotNull(sp.getConstellation());
+      assertNotNull(sp.getStar());
+      assertNotNull(sp.getAgency());
+      assertNotNull(sp.getAgencyAbbreviation());
+      assertNotNull(sp.getNasaSpaceCraft());
+      assertNotNull(sp.getSpaceCompany());
+      assertNotNull(sp.getDistanceMeasurement());
+      assertNotNull(sp.getMeteorite());
+    });
+  }
 }
