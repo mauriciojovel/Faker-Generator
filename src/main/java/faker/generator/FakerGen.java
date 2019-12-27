@@ -361,6 +361,9 @@ public class FakerGen {
                 f.set(data, faker.commerce().promotionCode());
                 break;
             }
+          }else if (f.isAnnotationPresent(FakeCurrency.class))  {
+            FakeCurrency fc = f.getAnnotation(FakeCurrency.class);
+            f.set(data, faker.resolve(fc.value().getFakerKey()));
           }
           else if (f.isAnnotationPresent(FakeMedical.class)) {
             FakeMedical b = f.getAnnotation(FakeMedical.class);
@@ -404,6 +407,10 @@ public class FakerGen {
                 f.set(data, faker.weather().temperatureFahrenheit());
                 break;
             }
+          }
+          else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
+            FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
+            f.set(data, faker.resolve(ram.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);

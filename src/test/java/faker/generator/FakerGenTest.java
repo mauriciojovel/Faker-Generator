@@ -221,6 +221,17 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testCurrency() {
+    Optional<Currency> c = FakerGen.create(Currency.class);
+    assertTrue(c.isPresent());
+    c.ifPresent( ch -> {
+      assertNotNull(ch.getCode());
+      assertNotNull(ch.getName());
+    });
+  }
+
+
+  @Test
   public void testCommerce() {
     Optional<Commerce> c = FakerGen.create(Commerce.class);
     assertTrue(c.isPresent());
@@ -274,6 +285,17 @@ public class FakerGenTest {
       assertNotNull(co.getDescription());
       assertNotNull(co.getCelsius());
       assertNotNull(co.getFahrenheit());
+    });
+  }
+   
+   @Test
+   public void testRickAndMorty() {
+    Optional<RickAndMorty> r = FakerGen.create(RickAndMorty.class);
+    assertTrue(r.isPresent());
+    r.ifPresent(ro -> {
+      assertNotNull(ro.getCharacter());
+      assertNotNull(ro.getLocation());
+      assertNotNull(ro.getQuote());
     });
   }
 }
