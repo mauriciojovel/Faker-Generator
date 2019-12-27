@@ -424,6 +424,10 @@ public class FakerGen {
                 f.set(data, faker.starTrek().villain());
             }
           }
+          else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
+            FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
+            f.set(data, faker.resolve(ram.value().getFakerKey()));
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
