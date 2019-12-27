@@ -396,17 +396,7 @@ public class FakerGen {
           }
           else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
             FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
-            switch (ram.value()) {
-              case CHARACTER:
-                f.set(data, faker.rickAndMorty().character());
-                break;
-              case LOCATION:
-                f.set(data, faker.rickAndMorty().location());
-                break;
-              case QUOTE:
-                f.set(data, faker.rickAndMorty().quote());
-                break;
-            }
+            f.set(data, faker.resolve(ram.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
