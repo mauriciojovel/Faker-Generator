@@ -287,4 +287,21 @@ public class FakerGenTest {
       assertNotNull(ro.getQuote());
     });
   }
+
+  @Test
+  public void testSlackEmoji() {
+    Optional<SlackEmoji> s = FakerGen.create(SlackEmoji.class);
+    assertTrue(s.isPresent());
+    s.ifPresent(sl -> {
+      assertNotNull(sl.getPeople());
+      assertNotNull(sl.getNature());
+      assertNotNull(sl.getFoodAndDrink());
+      assertNotNull(sl.getCelebration());
+      assertNotNull(sl.getActivity());
+      assertNotNull(sl.getTravelAndPlaces());
+      assertNotNull(sl.getObjectAndSymbols());
+      assertNotNull(sl.getCustom());
+      assertNotNull(sl.getEmoji());
+    });
+  }
 }

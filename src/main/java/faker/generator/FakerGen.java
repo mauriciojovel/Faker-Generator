@@ -397,6 +397,37 @@ public class FakerGen {
           else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
             FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
             f.set(data, faker.resolve(ram.value().getFakerKey()));
+          } else if (f.isAnnotationPresent(FakeSlackEmoji.class)) {
+            FakeSlackEmoji fs = f.getAnnotation(FakeSlackEmoji.class);
+            switch (fs.value()) {
+              case PEOPLE:
+                f.set(data, faker.slackEmoji().people());
+                break;
+              case NATURE:
+                f.set(data, faker.slackEmoji().nature());
+                break;
+              case FOOD_AND_DRINK:
+                f.set(data, faker.slackEmoji().foodAndDrink());
+                break;
+              case CELEBRATION:
+                f.set(data, faker.slackEmoji().celebration());
+                break;
+              case ACTIVITY:
+                f.set(data, faker.slackEmoji().activity());
+                break;
+              case TRAVEL_AND_PLACES:
+                f.set(data, faker.slackEmoji().travelAndPlaces());
+                break;
+              case OBJECT_AND_SYMBOLS:
+                f.set(data, faker.slackEmoji().objectsAndSymbols());
+                break;
+              case CUSTOM:
+                f.set(data, faker.slackEmoji().custom());
+                break;
+              case EMOJI:
+                f.set(data, faker.slackEmoji().emoji());
+                break;
+            }
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
