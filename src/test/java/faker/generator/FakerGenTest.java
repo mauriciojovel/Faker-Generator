@@ -323,4 +323,19 @@ public class FakerGenTest {
       assertNotNull(co.getQuote());
     });
   }
+
+  @Test
+  public void testHitchiker() {
+    Optional<Hitchhikers> c = FakerGen.create(Hitchhikers.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getMarvinQuote());
+      assertNotNull(co.getQuote());
+      assertNotNull(co.getPlanet());
+      assertNotNull(co.getSpecie());
+      assertNotNull(co.getStarShip());
+    });
+  }
 }

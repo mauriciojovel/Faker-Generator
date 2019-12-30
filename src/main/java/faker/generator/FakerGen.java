@@ -513,6 +513,32 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeHitchhikers.class)) {
+            FakeHitchhikers fc = f.getAnnotation(FakeHitchhikers.class);
+            switch (fc.value()) {
+              case CHARACTER:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().location());
+                break;
+              case MARVINQUOTE:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().marvinQuote());
+                break;
+              case PLANET:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().planet());
+                break;
+              case QUOTE:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().quote());
+                break;
+              case SPECIE:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().specie());
+                break;
+              case STARSHIP:
+                f.set(data, faker.hitchhikersGuideToTheGalaxy().starship());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
