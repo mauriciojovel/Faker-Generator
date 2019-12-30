@@ -496,6 +496,23 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeHobbit.class)) {
+            FakeHobbit fc = f.getAnnotation(FakeHobbit.class);
+            switch (fc.value()) {
+              case CHARACTER:
+                f.set(data, faker.hobbit().character());
+                break;
+              case THORINSCOMPANY:
+                f.set(data, faker.hobbit().thorinsCompany());
+                break;
+              case QUOTE:
+                f.set(data, faker.hobbit().quote());
+                break;
+              case LOCATION:
+                f.set(data, faker.hobbit().location());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }

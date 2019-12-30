@@ -312,4 +312,15 @@ public class FakerGenTest {
     });
   }
 
+  @Test
+  public void testHobbit() {
+    Optional<Hobbit> c = FakerGen.create(Hobbit.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getThorinsCompany());
+      assertNotNull(co.getQuote());
+    });
+  }
 }
