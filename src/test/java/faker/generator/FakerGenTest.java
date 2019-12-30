@@ -288,6 +288,7 @@ public class FakerGenTest {
     });
   }
 
+
   @Test
   public void testWeather() {
     Optional<Weather> c = FakerGen.create(Weather.class);
@@ -300,39 +301,15 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testStarTrek() {
-    Optional<StarTrek> c = FakerGen.create(StarTrek.class);
+  public void testHowIMetYourMother() {
+    Optional<HowIMetYourMother> c = FakerGen.create(HowIMetYourMother.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
       assertNotNull(co.getCharacter());
-      assertNotNull(co.getLocation());
-      assertNotNull(co.getSpecie());
-      assertNotNull(co.getVillain());
-    });
-  }
-
-  @Test
-  public void testOverwatch() {
-    Optional<Overwatch> c = FakerGen.create(Overwatch.class);
-    assertTrue(c.isPresent());
-    c.ifPresent(co -> {
-      assertNotNull(co.getHero());
-      assertNotNull(co.getLocation());
+      assertNotNull(co.getCatchPhrase());
+      assertNotNull(co.getHighFive());
       assertNotNull(co.getQuote());
     });
   }
 
-  @Test
-  public void testLeagueOfLegends() {
-    Optional<LeagueOfLegends> c = FakerGen.create(LeagueOfLegends.class);
-    assertTrue(c.isPresent());
-    c.ifPresent(co -> {
-      assertNotNull(co.getChampion());
-      assertNotNull(co.getLocation());
-      assertNotNull(co.getMasteries());
-      assertNotNull(co.getQuote());
-      assertNotNull(co.getRank());
-      assertNotNull(co.getSummonerSpell());
-    });
-  }
 }

@@ -479,6 +479,23 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeHowIMetYourMother.class)) {
+            FakeHowIMetYourMother fc = f.getAnnotation(FakeHowIMetYourMother.class);
+            switch (fc.value()) {
+              case CHARACTER:
+                f.set(data, faker.howIMetYourMother().character());
+                break;
+              case HIGHFIVE:
+                f.set(data, faker.howIMetYourMother().highFive());
+                break;
+              case CATCHPHRASE:
+                f.set(data, faker.howIMetYourMother().catchPhrase());
+                break;
+              case QUOTE:
+                f.set(data, faker.howIMetYourMother().quote());
+                break;
+            }
+          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
