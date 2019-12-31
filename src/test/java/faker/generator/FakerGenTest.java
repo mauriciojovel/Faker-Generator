@@ -278,7 +278,40 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testRickAndMorty() {
+  public void testWeather() {
+    Optional<Weather> c = FakerGen.create(Weather.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getDescription());
+      assertNotNull(co.getCelsius());
+      assertNotNull(co.getFahrenheit());
+    });
+  }
+
+  @Test
+  public void testStarTrek() {
+    Optional<StarTrek> c = FakerGen.create(StarTrek.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getSpecie());
+      assertNotNull(co.getVillain());
+    });
+  }
+
+  @Test
+  public void testOverwatch() {
+    Optional<Overwatch> c = FakerGen.create(Overwatch.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getHero());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getQuote());
+     });
+   }
+
+    public void testRickAndMorty() {
     Optional<RickAndMorty> r = FakerGen.create(RickAndMorty.class);
     assertTrue(r.isPresent());
     r.ifPresent(ro -> {

@@ -394,6 +394,50 @@ public class FakerGen {
                 break;
             }
           }
+          else if(f.isAnnotationPresent(FakeWeather.class)) {
+            FakeWeather fc = f.getAnnotation(FakeWeather.class);
+            switch (fc.value()) {
+              case DESCRIPTION:
+                f.set(data, faker.weather().description());
+                break;
+              case CELSIUS:
+                f.set(data, faker.weather().temperatureCelsius());
+                break;
+              case FAHRENHEIT:
+                f.set(data, faker.weather().temperatureFahrenheit());
+                break;
+            }
+          }
+          else if(f.isAnnotationPresent(FakeStarTrek.class)) {
+            FakeStarTrek fc = f.getAnnotation(FakeStarTrek.class);
+            switch (fc.value()) {
+              case CHARACTER:
+                f.set(data, faker.starTrek().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.starTrek().location());
+                break;
+              case SPECIE:
+                f.set(data, faker.starTrek().specie());
+                break;
+              case VILLAIN:
+                f.set(data, faker.starTrek().villain());
+            }
+          }
+          else if(f.isAnnotationPresent(FakeOverwatch.class)) {
+            FakeOverwatch fc = f.getAnnotation(FakeOverwatch.class);
+            switch (fc.value()) {
+              case HERO:
+                f.set(data, faker.overwatch().hero());
+                break;
+              case LOCATION:
+                f.set(data, faker.overwatch().location());
+                break;
+              case QUOTE:
+                f.set(data, faker.overwatch().quote());
+                break;
+            }
+          }
           else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
             FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
             f.set(data, faker.resolve(ram.value().getFakerKey()));
