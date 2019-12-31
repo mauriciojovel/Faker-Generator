@@ -266,7 +266,6 @@ public class FakerGenTest {
     });
   }
 
-  @Test
   public void testLebowski() {
     Optional<Lebowski> c = FakerGen.create(Lebowski.class);
     assertTrue(c.isPresent());
@@ -318,6 +317,18 @@ public class FakerGenTest {
       assertNotNull(ro.getCharacter());
       assertNotNull(ro.getLocation());
       assertNotNull(ro.getQuote());
+    });
+  }
+
+  @Test
+  public void testTeam() {
+    Optional<Team> t = FakerGen.create(Team.class);
+    assertTrue(t.isPresent());
+    t.ifPresent(to -> {
+      assertNotNull(to.getName());
+      assertNotNull(to.getCreature());
+      assertNotNull(to.getState());
+      assertNotNull(to.getSport());
     });
   }
 }
