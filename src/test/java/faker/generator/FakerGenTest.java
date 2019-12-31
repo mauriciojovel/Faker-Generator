@@ -221,6 +221,22 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testCompany() {
+    Optional<Company> c = FakerGen.create(Company.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getBs());
+      assertNotNull(co.getBuzzWord());
+      assertNotNull(co.getIndustry());
+      assertNotNull(co.getLogo());
+      assertNotNull(co.getName());
+      assertNotNull(co.getProfession());
+      assertNotNull(co.getSuffix());
+      assertNotNull(co.getUrl());
+    });
+  }
+
+  @Test
   public void testCurrency() {
     Optional<Currency> c = FakerGen.create(Currency.class);
     assertTrue(c.isPresent());
