@@ -7,5 +7,5 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Inherited
 public @interface FakeCat {
-    FakerCatType value() default FakerCatType.NAME;
+    FakeCatType value() default FakeCatType.NAME;
 }

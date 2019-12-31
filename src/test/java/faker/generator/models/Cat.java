@@ -1,18 +1,18 @@
 package faker.generator.models;
 
 import faker.generator.FakeCat;
-import faker.generator.FakerCatType;
+import faker.generator.FakeCatType;
 import lombok.Data;
 
 @Data
 public class Cat {
 
-    @FakeCat(FakerCatType.NAME)
+    @FakeCat(FakeCatType.NAME)
     private String name;
 
-    @FakeCat(FakerCatType.BREED)
+    @FakeCat(FakeCatType.BREED)
     private String breed;
 
-    @FakeCat(FakerCatType.REGISTRY)
+    @FakeCat(FakeCatType.REGISTRY)
     private String registry;
 }

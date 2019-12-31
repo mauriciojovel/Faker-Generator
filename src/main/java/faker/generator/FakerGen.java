@@ -488,17 +488,7 @@ public class FakerGen {
           }
           else if (f.isAnnotationPresent(FakeCat.class)) {
             FakeCat c = f.getAnnotation(FakeCat.class);
-            switch (c.value()) {
-              case NAME:
-                f.set(data, faker.cat().name());
-                break;
-              case BREED:
-                f.set(data, faker.cat().breed());
-                break;
-              case REGISTRY:
-                f.set(data, faker.cat().registry());
-                break;
-            }
+            f.set(data, faker.resolve(c.value().getFakerKey()));
           }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
