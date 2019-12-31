@@ -337,6 +337,34 @@ public class FakerGen {
                 f.set(data, faker.book().publisher());
                 break;
             }
+          } else if (f.isAnnotationPresent(FakeCompany.class)) {
+            FakeCompany fc = f.getAnnotation(FakeCompany.class);
+            switch (fc.value()) {
+              case BS:
+                f.set(data, faker.company().bs());
+                break;
+              case BUZZ_WORD:
+                f.set(data, faker.company().buzzword());
+                break;
+              case INDUSTRY:
+                f.set(data, faker.company().industry());
+                break;
+              case LOGO:
+                f.set(data, faker.company().logo());
+                break;
+              case NAME:
+                f.set(data, faker.company().name());
+                break;
+              case PROFESSION:
+                f.set(data, faker.company().profession());
+                break;
+              case SUFFIX:
+                f.set(data, faker.company().suffix());
+                break;
+              case URL:
+                f.set(data, faker.company().url());
+                break;
+            }
           } else if(f.isAnnotationPresent(FakeColor.class) ) {
             f.set(data, faker.color().name());
           }else if(f.isAnnotationPresent(FakeCommerce.class)) {
@@ -392,6 +420,70 @@ public class FakerGen {
               case QUOTE:
                 f.set(data, faker.lebowski().quote());
                 break;
+            }
+          }
+          else if(f.isAnnotationPresent(FakeWeather.class)) {
+            FakeWeather fc = f.getAnnotation(FakeWeather.class);
+            switch (fc.value()) {
+              case DESCRIPTION:
+                f.set(data, faker.weather().description());
+                break;
+              case CELSIUS:
+                f.set(data, faker.weather().temperatureCelsius());
+                break;
+              case FAHRENHEIT:
+                f.set(data, faker.weather().temperatureFahrenheit());
+                break;
+            }
+          }
+          else if(f.isAnnotationPresent(FakeStarTrek.class)) {
+            FakeStarTrek fc = f.getAnnotation(FakeStarTrek.class);
+            switch (fc.value()) {
+              case CHARACTER:
+                f.set(data, faker.starTrek().character());
+                break;
+              case LOCATION:
+                f.set(data, faker.starTrek().location());
+                break;
+              case SPECIE:
+                f.set(data, faker.starTrek().specie());
+                break;
+              case VILLAIN:
+                f.set(data, faker.starTrek().villain());
+            }
+          }
+          else if(f.isAnnotationPresent(FakeOverwatch.class)) {
+            FakeOverwatch fc = f.getAnnotation(FakeOverwatch.class);
+            switch (fc.value()) {
+              case HERO:
+                f.set(data, faker.overwatch().hero());
+                break;
+              case LOCATION:
+                f.set(data, faker.overwatch().location());
+                break;
+              case QUOTE:
+                f.set(data, faker.overwatch().quote());
+                break;
+            }
+          }
+          else if (f.isAnnotationPresent(FakeRickAndMorty.class)) {
+            FakeRickAndMorty ram = f.getAnnotation(FakeRickAndMorty.class);
+            f.set(data, faker.resolve(ram.value().getFakerKey()));
+          }
+          else if (f.isAnnotationPresent(FakeTeam.class)) {
+            FakeTeam t = f.getAnnotation(FakeTeam.class);
+            switch (t.value()) {
+              case NAME:
+                f.set(data, faker.team().name());
+                break;
+              case CREATURE:
+                f.set(data, faker.team().creature());
+                break;
+              case STATE:
+                f.set(data, faker.team().state());
+                break;
+              case SPORT:
+                f.set(data, faker.team().sport());
             }
           }
           else if (f.isAnnotationPresent(FakeFile.class)) {
