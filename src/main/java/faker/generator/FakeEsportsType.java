@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeEsportsType {
-    PLAYER, TEAM, EVENT, LEAGUE, GAME
+    PLAYER("esport.players"), TEAM("esport.teams"), EVENT("esport.events"), LEAGUE("esport.leagues"), GAME("esport.games");
+    private String fakerKey;
 }
