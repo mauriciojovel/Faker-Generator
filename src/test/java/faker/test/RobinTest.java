@@ -1,8 +1,9 @@
-package faker.generator;
+package faker.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import faker.generator.FakerGen;
 import faker.generator.models.*;
 
 import java.util.Locale;
