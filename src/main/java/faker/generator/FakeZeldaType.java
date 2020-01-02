@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeZeldaType {
-    GAME, CHARACTER
+    GAME("games.zelda.games"), CHARACTER("games.zelda.characters");
+    private String fakerKey;
 }
