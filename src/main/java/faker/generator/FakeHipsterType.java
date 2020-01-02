@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeHipsterType {
-    WORD
+    WORD("hipster.words");
+    private String fakerKey;
 }
