@@ -12,8 +12,8 @@ cache:
     - $HOME/.m2
 before_install:
 # https://stackoverflow.com/a/19463607
-- echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
-- echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
+- if [[ $TRAVIS_BRANCH =~ master|release/* ]] ; then echo $GPG_SECRET_KEYS | base64 --decode | gpg --import; fi
+- if [[ $TRAVIS_BRANCH =~ master|release/* ]] ; then echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust; fi
 - mvn help:evaluate -N -Dexpression=revision|grep -v '\['
 # https://maven.apache.org/maven-ci-friendly.html
 - if [[ $TRAVIS_BRANCH == release/* ]] ; then export CHANGE_LIST=-$TRAVIS_BUILD_NUMBER-SNAPSHOT; else CHANGE_LIST=; fi
@@ -21,7 +21,7 @@ before_install:
 install: mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 after_success:
 - mvn clean test jacoco:report coveralls:report
-- if [[ "master" =~ master|release/* ]] ; then mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST clean deploy --settings .maven.xml -DskipTests=true -B -V -P release; fi
+- if [[ $TRAVIS_BRANCH =~ master|release/* ]] ; then mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST clean deploy --settings .maven.xml -DskipTests=true -B -V -P release; fi
 before_deploy:
 - git tag -a v$project_version -m "Tag version $project_version"
 - mvn -Drevision=$project_version -Dchangelist=$CHANGE_LIST package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
