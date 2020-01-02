@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeRockBandType {
-    NAME
+    NAME("rock_band.name");
+    private String fakerKey;
 }
