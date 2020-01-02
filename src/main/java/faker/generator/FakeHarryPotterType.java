@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeHarryPotterType {
-    CHARACTER, LOCATION, QUOTE, BOOK
+    CHARACTER("harry_potter.characters"), LOCATION("harry_potter.locations"), QUOTE("harry_potter.quotes"), BOOK("harry_potter.books");
+    private String fakerKey;
 }
