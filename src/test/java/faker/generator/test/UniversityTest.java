@@ -1,5 +1,6 @@
-package faker.generator;
+package faker.generator.test;
 
+import faker.generator.FakerGen;
 import faker.generator.models.University;
 import org.junit.Test;
 
