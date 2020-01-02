@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeStockType {
-    NSDQ, NYSE
+    NSDQ("stock.symbol_nsdq"), NYSE("stock.symbol_nyse");
+    private String fakerKey;
 }
