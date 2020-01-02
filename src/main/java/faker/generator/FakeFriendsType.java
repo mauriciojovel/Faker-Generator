@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeFriendsType {
-    CHARACTER, LOCATION, QUOTE
+    CHARACTER("friends.characters"), LOCATION("friends.locations"), QUOTE("friends.quotes");
+    private String fakerKey;
 }
