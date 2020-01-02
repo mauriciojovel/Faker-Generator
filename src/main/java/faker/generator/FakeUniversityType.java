@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeUniversityType {
-    NAME, PREFIX, SUFFIX
+    NAME("university.name"), PREFIX("university.prefix"), SUFFIX("university.suffix");
+    private String fakerKey;
 }
