@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum FakeBeerType {
-    NAME, STYLE, HOP, YEAST, MALT
+    NAME("beer.name"), STYLE("beer.style"), HOP("beer.hop"), YEAST("beer.yeast"), MALT("beer.malt");
+    private String fakerKey;
 }
