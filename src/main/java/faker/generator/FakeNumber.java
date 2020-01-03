@@ -1,11 +1,15 @@
 package faker.generator;
 
+import faker.generator.services.FakeNumberService;
+import faker.generator.services.FakeServiceName;
+
 import java.lang.annotation.*;
 
 @Documented
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
+@FakeServiceName(FakeNumberService.class)
 public @interface FakeNumber {
   FakeNumberType value() default FakeNumberType.RANDOM_NUMBER;
   int minValue() default -1;
