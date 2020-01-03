@@ -96,10 +96,6 @@ public class FakerGen {
               }
             });
           }
-          else if (f.isAnnotationPresent(FakeCat.class)) {
-            FakeCat c = f.getAnnotation(FakeCat.class);
-            f.set(data, faker.resolve(c.value().getFakerKey()));
-          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }

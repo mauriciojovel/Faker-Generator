@@ -292,6 +292,7 @@ public class FakerGenTest {
     });
   }
 
+  @Test
   public void testWeather() {
     Optional<Weather> c = FakerGen.create(Weather.class);
     assertTrue(c.isPresent());
@@ -344,17 +345,6 @@ public class FakerGenTest {
       assertNotNull(to.getCreature());
       assertNotNull(to.getState());
       assertNotNull(to.getSport());
-    });
-  }
-
-  @Test
-  public void testCat() {
-    Optional<Cat> c = FakerGen.create(Cat.class);
-    assertTrue(c.isPresent());
-    c.ifPresent(co -> {
-      assertNotNull(co.getName());
-      assertNotNull(co.getBreed());
-      assertNotNull(co.getRegistry());
     });
   }
 }
