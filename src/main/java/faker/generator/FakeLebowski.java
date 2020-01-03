@@ -10,6 +10,7 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Inherited
 @FakeServiceName(FakeLebowskiService.class)
+
 public @interface FakeLebowski {
     FakeLebowskiType value() default FakeLebowskiType.ACTOR;
 
