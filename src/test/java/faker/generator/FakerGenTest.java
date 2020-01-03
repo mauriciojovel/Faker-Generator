@@ -221,6 +221,22 @@ public class FakerGenTest {
   }
 
   @Test
+  public void testCompany() {
+    Optional<Company> c = FakerGen.create(Company.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getBs());
+      assertNotNull(co.getBuzzWord());
+      assertNotNull(co.getIndustry());
+      assertNotNull(co.getLogo());
+      assertNotNull(co.getName());
+      assertNotNull(co.getProfession());
+      assertNotNull(co.getSuffix());
+      assertNotNull(co.getUrl());
+    });
+  }
+
+  @Test
   public void testCurrency() {
     Optional<Currency> c = FakerGen.create(Currency.class);
     assertTrue(c.isPresent());
@@ -266,7 +282,6 @@ public class FakerGenTest {
     });
   }
 
-  @Test
   public void testLebowski() {
     Optional<Lebowski> c = FakerGen.create(Lebowski.class);
     assertTrue(c.isPresent());
@@ -278,7 +293,40 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testRickAndMorty() {
+  public void testWeather() {
+    Optional<Weather> c = FakerGen.create(Weather.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getDescription());
+      assertNotNull(co.getCelsius());
+      assertNotNull(co.getFahrenheit());
+    });
+  }
+
+  @Test
+  public void testStarTrek() {
+    Optional<StarTrek> c = FakerGen.create(StarTrek.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getCharacter());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getSpecie());
+      assertNotNull(co.getVillain());
+    });
+  }
+
+  @Test
+  public void testOverwatch() {
+    Optional<Overwatch> c = FakerGen.create(Overwatch.class);
+    assertTrue(c.isPresent());
+    c.ifPresent(co -> {
+      assertNotNull(co.getHero());
+      assertNotNull(co.getLocation());
+      assertNotNull(co.getQuote());
+     });
+   }
+
+    public void testRickAndMorty() {
     Optional<RickAndMorty> r = FakerGen.create(RickAndMorty.class);
     assertTrue(r.isPresent());
     r.ifPresent(ro -> {
@@ -289,19 +337,14 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testSlackEmoji() {
-    Optional<SlackEmoji> s = FakerGen.create(SlackEmoji.class);
-    assertTrue(s.isPresent());
-    s.ifPresent(sl -> {
-      assertNotNull(sl.getPeople());
-      assertNotNull(sl.getNature());
-      assertNotNull(sl.getFoodAndDrink());
-      assertNotNull(sl.getCelebration());
-      assertNotNull(sl.getActivity());
-      assertNotNull(sl.getTravelAndPlaces());
-      assertNotNull(sl.getObjectAndSymbols());
-      assertNotNull(sl.getCustom());
-      assertNotNull(sl.getEmoji());
+  public void testTeam() {
+    Optional<Team> t = FakerGen.create(Team.class);
+    assertTrue(t.isPresent());
+    t.ifPresent(to -> {
+      assertNotNull(to.getName());
+      assertNotNull(to.getCreature());
+      assertNotNull(to.getState());
+      assertNotNull(to.getSport());
     });
   }
 }
