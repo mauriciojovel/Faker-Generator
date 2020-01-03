@@ -1,32 +1,32 @@
 package faker.generator.models;
 
-import faker.generator.FakerDog;
-import faker.generator.FakerDogType;
+import faker.generator.FakeDog;
+import faker.generator.FakeDogType;
 import lombok.Data;
 
 @Data
 public class Dog {
-    @FakerDog(FakerDogType.NAME)
+    @FakeDog(FakeDogType.NAME)
     private String name;
 
-    @FakerDog(FakerDogType.BREED)
+    @FakeDog(FakeDogType.BREED)
     private String breed;
 
-    @FakerDog(FakerDogType.SOUND)
+    @FakeDog(FakeDogType.SOUND)
     private String sound;
 
-    @FakerDog(FakerDogType.MEME_PHRASE)
+    @FakeDog(FakeDogType.MEME_PHRASE)
     private String memePhrase;
 
-    @FakerDog(FakerDogType.AGE)
+    @FakeDog(FakeDogType.AGE)
     private String age;
 
-    @FakerDog(FakerDogType.COAT_LENGTH)
+    @FakeDog(FakeDogType.COAT_LENGTH)
     private String coatLength;
 
-    @FakerDog(FakerDogType.GENDER)
+    @FakeDog(FakeDogType.GENDER)
     private String gender;
 
-    @FakerDog(FakerDogType.SIZE)
+    @FakeDog(FakeDogType.SIZE)
     private String size;
 }
