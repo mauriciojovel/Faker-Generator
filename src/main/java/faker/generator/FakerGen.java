@@ -96,20 +96,6 @@ public class FakerGen {
               }
             });
           }
-          else if (f.isAnnotationPresent(FakeFile.class)) {
-            FakeFile fc = f.getAnnotation(FakeFile.class);
-            switch (fc.value()) {
-              case EXTENSION:
-                f.set(data, faker.file().extension());
-                break;
-              case MIME_TYPE:
-                f.set(data, faker.file().mimeType());
-                break;
-              case FILE_NAME:
-                f.set(data, faker.file().fileName());
-                break;
-            }
-          }
         } catch (IllegalAccessException e) {
           log.debug("Exception when we tried to do something crazy", e);
         }
