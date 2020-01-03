@@ -1,11 +1,15 @@
 package faker.generator;
 
+import faker.generator.services.FakeInternetService;
+import faker.generator.services.FakeServiceName;
+
 import java.lang.annotation.*;
 
 @Documented
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
+@FakeServiceName(FakeInternetService.class)
 public @interface FakeInternet {
   FakeInternetType value() default FakeInternetType.EMAIL;
   String localPart() default "";
