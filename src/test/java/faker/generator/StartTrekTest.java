@@ -1,4 +1,4 @@
-package faker.generator.test;
+package faker.generator;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

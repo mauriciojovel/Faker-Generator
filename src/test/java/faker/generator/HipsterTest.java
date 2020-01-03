@@ -1,4 +1,4 @@
-package faker.generator.test;
+package faker.generator;
 
 import faker.generator.FakerGen;
 import faker.generator.models.Hipster;
