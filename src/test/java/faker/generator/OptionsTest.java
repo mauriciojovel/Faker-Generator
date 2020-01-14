@@ -14,10 +14,7 @@ public class OptionsTest {
         Optional<Options> o = FakerGen.create(Options.class);
         assertTrue(o.isPresent());
         o.ifPresent(op -> {
-            assertNotNull(op.getDay());
-            assertNotNull(op.getMonth());
-            assertNotNull(op.getYear());
-            assertNotNull(op.getDayOfWeek());
+            assertNotNull(op.getDays());
         });
     }
 }
