@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class OptionsTest {
     @Test
@@ -14,7 +13,9 @@ public class OptionsTest {
         Optional<Options> o = FakerGen.create(Options.class);
         assertTrue(o.isPresent());
         o.ifPresent(op -> {
-            assertNotNull(op.getDays());
+            assertNotNull(op.getStringOptions());
+            assertNotNull(op.getDoubleOptions());
+            assertNotNull(op.getIntOptions());
         });
     }
 }

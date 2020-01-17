@@ -11,5 +11,7 @@ import java.lang.annotation.*;
 @Inherited
 @FakeServiceName(FakeOptionsService.class)
 public @interface FakeOptions {
-    String[] value();
+    String[] stringOptions() default {};
+    int[] intOptions()  default {};
+    double[] doubleOptions() default {};
 }
