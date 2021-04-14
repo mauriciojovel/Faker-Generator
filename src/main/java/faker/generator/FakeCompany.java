@@ -1,6 +1,5 @@
 package faker.generator;
 
-import com.sun.org.apache.bcel.internal.generic.FADD;
 import faker.generator.services.FakeCompanyService;
 import faker.generator.services.FakeServiceName;
 
