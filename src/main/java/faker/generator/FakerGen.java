@@ -6,11 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
+import org.apache.commons.lang3.reflect.FieldUtils;
 import static java.util.Arrays.asList;
 
 /**
@@ -34,8 +36,8 @@ public class FakerGen {
   @SuppressWarnings("WeakerAccess")
   public static <T> Optional<T> create(Class<T> clazz) {
     try {
-      T data = clazz.newInstance();
-      Field[] fields = clazz.getDeclaredFields();
+      T data = clazz.getDeclaredConstructor().newInstance();
+      Field[] fields = FieldUtils.getAllFields(clazz);
       asList(fields).forEach(f -> {
         try {
           f.setAccessible(true);
@@ -90,8 +92,9 @@ public class FakerGen {
               FakeServiceName fsn = a.annotationType().getAnnotation(FakeServiceName.class);
               try {
                 //noinspection unchecked
-                fsn.value().newInstance().setValue(a, f, data, faker);
-              } catch (InstantiationException | IllegalAccessException e) {
+                fsn.value().getDeclaredConstructor().newInstance().setValue(a, f, data, faker);
+              } catch (InstantiationException | IllegalAccessException | InvocationTargetException
+                      | NoSuchMethodException e) {
                 log.debug("Problem with create a new instance of {}", fsn.value(), e);
               }
             });
@@ -102,7 +105,8 @@ public class FakerGen {
 
       });
       return Optional.of(data);
-    } catch (InstantiationException | IllegalAccessException e) {
+    } catch (InstantiationException | IllegalAccessException | InvocationTargetException
+            | NoSuchMethodException e) {
       log.debug("Exception when we tried to do something crazy", e);
     }
     return Optional.empty();
