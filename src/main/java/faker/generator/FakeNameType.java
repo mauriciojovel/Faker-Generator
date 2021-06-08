@@ -11,5 +11,5 @@ public enum FakeNameType {
   NAME_WITH_MIDDLE("name.name_with_middle"), PREFIX("name.prefix"),
   SUFFIX("name.suffix"), TITLE("name.title"), USERNAME("name.username");
 
-  private String fakerKey;
+  private final String fakerKey;
 }

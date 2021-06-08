@@ -8,5 +8,5 @@ import lombok.Getter;
 public enum FakeAncientType {
   GOD("ancient.god"), PRIMORDIAL("ancient.primordial"), TITAN("ancient.titan"), HERO("ancient.hero");
 
-  private String fakerKey;
+  private final String fakerKey;
 }
