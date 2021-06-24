@@ -4,6 +4,10 @@ import faker.generator.FakeDateAndTime;
 import faker.generator.FakeDateAndTimeType;
 import lombok.Data;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -29,4 +33,16 @@ public class DateAndTime {
 
     @FakeDateAndTime(FakeDateAndTimeType.BIRTHDAY)
     private Date birthday;
+
+    @FakeDateAndTime(FakeDateAndTimeType.BETWEEN)
+    private ZonedDateTime zonedDateTimeBetween;
+
+    @FakeDateAndTime(value = FakeDateAndTimeType.PAST, atMost = 50, unit = TimeUnit.HOURS)
+    private LocalDateTime localDateTimePastWithParams;
+
+    @FakeDateAndTime(FakeDateAndTimeType.BIRTHDAY)
+    private LocalDate localDateBirthday;
+
+    @FakeDateAndTime(value = FakeDateAndTimeType.PAST)
+    private Instant instantPast;
 }
