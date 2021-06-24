@@ -7,6 +7,9 @@ import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
@@ -21,37 +24,37 @@ public class FakeDateAndTimeService implements FakeService<FakeDateAndTime> {
             case FUTURE:
                 unit = Optional.of(annotation.unit());
                 if(annotation.atMost() > 0 && annotation.minimum() > 0 && unit.isPresent()) {
-                    target.set(data, faker.date().future(annotation.atMost(), annotation.minimum(), unit.get()));
+                    target.set(data, chooseCorrectType(target, faker.date().future(annotation.atMost(), annotation.minimum(), unit.get())));
                 }
                 else if(annotation.atMost() > 0 && annotation.referenceDate() == true && unit.isPresent()){
                     Date referenceDate = new Date();
-                    target.set(data, faker.date().future(annotation.atMost(), unit.get(), referenceDate));
+                    target.set(data, chooseCorrectType(target, faker.date().future(annotation.atMost(), unit.get(), referenceDate)));
                 }
                 else if(annotation.atMost() > 0 && unit.isPresent()) {
-                    target.set(data, faker.date().future(annotation.atMost(), unit.get()));
+                    target.set(data, chooseCorrectType(target, faker.date().future(annotation.atMost(), unit.get())));
                 }
                 else {
                     Random random = new Random();
                     int atMost = random.nextInt(RANDOM_BOUND) + 1;
-                    target.set(data, faker.date().future(atMost, unit.get()));
+                    target.set(data, chooseCorrectType(target, faker.date().future(atMost, unit.get())));
                 }
                 break;
             case PAST:
                 unit = Optional.of(annotation.unit());
                 if(annotation.atMost() > 0 && annotation.minimum() > 0 && unit.isPresent()) {
-                    target.set(data, faker.date().past(annotation.atMost(), annotation.minimum(), unit.get()));
+                    target.set(data, chooseCorrectType(target, faker.date().past(annotation.atMost(), annotation.minimum(), unit.get())));
                 }
                 else if(annotation.atMost() > 0 && annotation.referenceDate() == true && unit.isPresent()){
                     Date referenceDate = new Date();
-                    target.set(data, faker.date().past(annotation.atMost(), unit.get(), referenceDate));
+                    target.set(data, chooseCorrectType(target, faker.date().past(annotation.atMost(), unit.get(), referenceDate)));
                 }
                 else if(annotation.atMost() > 0 && unit.isPresent()) {
-                    target.set(data, faker.date().past(annotation.atMost(), unit.get()));
+                    target.set(data, chooseCorrectType(target, faker.date().past(annotation.atMost(), unit.get())));
                 }
                 else {
                     Random random = new Random();
                     int atMost = random.nextInt(RANDOM_BOUND) + 1;
-                    target.set(data, faker.date().past(atMost, unit.get()));
+                    target.set(data, chooseCorrectType(target, faker.date().past(atMost, unit.get())));
                 }
                 break;
             case BETWEEN:
@@ -61,11 +64,25 @@ public class FakeDateAndTimeService implements FakeService<FakeDateAndTime> {
                 Instant before = now.minus(Duration.ofDays(difference));
                 Date to = Date.from(now);
                 Date from = Date.from(before);
-                target.set(data, faker.date().between(from, to));
+                target.set(data, chooseCorrectType(target, faker.date().between(from, to)));
                 break;
             case BIRTHDAY:
-                target.set(data, faker.date().birthday());
+                target.set(data, chooseCorrectType(target, faker.date().birthday()));
                 break;
+        }
+    }
+
+    public Object chooseCorrectType(Field field, Date date) {
+        if (LocalDate.class.isAssignableFrom(field.getType())) {
+            return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } else if (LocalDateTime.class.isAssignableFrom(field.getType())) {
+            return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        } else if (Instant.class.isAssignableFrom(field.getType())) {
+            return date.toInstant().atZone(ZoneId.systemDefault()).toInstant();
+        } else if (ZonedDateTime.class.isAssignableFrom(field.getType())) {
+            return ZonedDateTime.ofInstant(date.toInstant().atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
+        } else {
+            return date;
         }
     }
 }
