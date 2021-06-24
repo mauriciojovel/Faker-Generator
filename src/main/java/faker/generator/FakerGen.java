@@ -47,7 +47,7 @@ public class FakerGen {
         try {
           f.setAccessible(true);
           if(f.isAnnotationPresent(FakeNewInstance.class)) {
-            Optional<?> newInstance = create(f.getType());
+            Optional<?> newInstance = create(f.getType(), ignoreProperties);
             newInstance.ifPresent(ni -> {
               FakeNewInstance fnewInstance = f.getAnnotation(FakeNewInstance.class);
               if(fnewInstance.lookForReference()) {
@@ -71,7 +71,7 @@ public class FakerGen {
                     numberBetween(1, fakeNewCollection.maxValue()) : fakeNewCollection.fixValue();
             ArrayList<Object> arrayList = new ArrayList<>(endValue);
             for (int i = 0; i < endValue; i++) {
-              Optional<?> d = create(fakeNewCollection.value());
+              Optional<?> d = create(fakeNewCollection.value(), ignoreProperties);
               d.ifPresent(ni -> {
                 if(fakeNewCollection.lookForReference()) {
                   Optional<Field> reference = Arrays.stream(ni.getClass().getDeclaredFields()).
