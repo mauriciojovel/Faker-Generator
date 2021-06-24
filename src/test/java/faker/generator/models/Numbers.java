@@ -2,6 +2,8 @@ package faker.generator.models;
 
 import faker.generator.FakeNumber;
 import faker.generator.FakeNumberType;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import lombok.Data;
 
 @Data
@@ -26,4 +28,10 @@ public class Numbers {
 
     @FakeNumber
     private Long randomNumber2;
+
+    @FakeNumber
+    private BigDecimal bigDecimalRandom1;
+
+    @FakeNumber(value = FakeNumberType.RANDOM_DOUBLE, maxNumberOfDecimal = 2, minValue = 1, maxValue = 100)
+    private BigInteger bigIntegerRandom1;
 }
