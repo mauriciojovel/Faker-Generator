@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -33,12 +34,16 @@ public class FakerGen {
     faker = Faker.instance(locale);
   }
 
+  public static <T> Optional<T> create(Class<T> clazz, String ... ignoreProperties) {
+    return create(clazz, Arrays.asList(ignoreProperties));
+  }
+
   @SuppressWarnings("WeakerAccess")
-  public static <T> Optional<T> create(Class<T> clazz) {
+  public static <T> Optional<T> create(Class<T> clazz, List<String> ignoreProperties) {
     try {
       T data = clazz.getDeclaredConstructor().newInstance();
       Field[] fields = FieldUtils.getAllFields(clazz);
-      asList(fields).forEach(f -> {
+      asList(fields).stream().filter(f -> !ignoreProperties.contains(f.getName())).forEach(f -> {
         try {
           f.setAccessible(true);
           if(f.isAnnotationPresent(FakeNewInstance.class)) {
@@ -46,7 +51,7 @@ public class FakerGen {
             newInstance.ifPresent(ni -> {
               FakeNewInstance fnewInstance = f.getAnnotation(FakeNewInstance.class);
               if(fnewInstance.lookForReference()) {
-                Optional<Field> reference = Arrays.stream(ni.getClass().getDeclaredFields()).
+                Optional<Field> reference = Arrays.stream(FieldUtils.getAllFields(ni.getClass())).
                         filter(field -> field.getType().isAssignableFrom(clazz)).findFirst();
                 reference.ifPresent(field -> {
                   try {
