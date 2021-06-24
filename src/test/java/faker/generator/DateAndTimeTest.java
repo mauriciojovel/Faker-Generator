@@ -22,6 +22,10 @@ public class DateAndTimeTest {
             assertNotNull(dto.getBetween());
             assertNotNull(dto.getBetweenWithParams());
             assertNotNull(dto.getBirthday());
+            assertNotNull(dto.getZonedDateTimeBetween());
+            assertNotNull(dto.getLocalDateBirthday());
+            assertNotNull(dto.getLocalDateTimePastWithParams());
+            assertNotNull(dto.getInstantPast());
         });
     }
 }

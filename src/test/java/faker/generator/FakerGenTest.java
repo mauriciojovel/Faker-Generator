@@ -119,6 +119,8 @@ public class FakerGenTest {
       assertNotNull(number.getRandomNumber());
       assertNotNull(number.getRandomNumber2());
       assertNotNull(number.getRandomDouble());
+      assertNotNull(number.getBigDecimalRandom1());
+      assertNotNull(number.getBigIntegerRandom1());
     });
   }
 
