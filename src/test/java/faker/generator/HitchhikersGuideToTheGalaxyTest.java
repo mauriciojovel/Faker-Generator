@@ -1,18 +1,16 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.HitchhikersGuideToTheGalaxy;
-import faker.generator.models.Hobbit;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class HitchhikersGuideToTheGalaxyTest {
+class HitchhikersGuideToTheGalaxyTest {
 
     @Test
-    public void testHitchhikersGuideToTheGalaxy() {
+    void testHitchhikersGuideToTheGalaxy() {
         Optional<HitchhikersGuideToTheGalaxy> c = FakerGen.create(HitchhikersGuideToTheGalaxy.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

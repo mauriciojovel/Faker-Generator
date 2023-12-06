@@ -1,16 +1,15 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Yoda;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class YodaTest {
+class YodaTest {
     @Test
-    public void testYoda() {
+    void testYoda() {
         Optional<Yoda> c = FakerGen.create(Yoda.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

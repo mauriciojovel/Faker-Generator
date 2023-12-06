@@ -1,18 +1,19 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.LordOfTheRings;
-import org.junit.Test;
+
 
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
-public class LordOfTheRingsTest {
+class LordOfTheRingsTest {
 
     @Test
-    public void testLordOfTheRings() {
+    void testLordOfTheRings() {
         Optional<LordOfTheRings> lor = FakerGen.create(LordOfTheRings.class);
         assertTrue(lor.isPresent());
         lor.ifPresent(loro -> {

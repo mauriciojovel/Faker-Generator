@@ -1,18 +1,15 @@
 package faker.generator;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
-import faker.generator.FakerGen;
-import faker.generator.models.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Locale;
+import faker.generator.models.HowIMetYourMother;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class HowIMetYourMotherTest {
+class HowIMetYourMotherTest {
     @Test
-    public void testHowIMetYourMother() {
+    void testHowIMetYourMother() {
         Optional<HowIMetYourMother> c = FakerGen.create(HowIMetYourMother.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

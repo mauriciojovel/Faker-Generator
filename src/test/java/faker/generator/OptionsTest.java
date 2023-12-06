@@ -1,15 +1,16 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Options;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
 
-public class OptionsTest {
+class OptionsTest {
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         Optional<Options> o = FakerGen.create(Options.class);
         assertTrue(o.isPresent());
         o.ifPresent(op -> {

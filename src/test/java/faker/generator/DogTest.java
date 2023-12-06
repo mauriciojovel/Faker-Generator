@@ -1,16 +1,16 @@
 package faker.generator;
 
 import faker.generator.models.Dog;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DogTest {
+class DogTest {
     @Test
-    public void dogTest() {
+    void dogTest() {
         Optional<Dog> d = FakerGen.create(Dog.class);
         assertTrue(d.isPresent());
         d.ifPresent(dog -> {

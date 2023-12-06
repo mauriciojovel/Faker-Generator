@@ -1,18 +1,16 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Zelda;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class ZeldaTest {
+class ZeldaTest {
 
     @Test
-    public void testZelda() {
+    void testZelda() {
         Optional<Zelda> z = FakerGen.create(Zelda.class);
         assertTrue(z.isPresent());
         z.ifPresent(zo -> {

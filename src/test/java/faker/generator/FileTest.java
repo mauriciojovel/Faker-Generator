@@ -1,18 +1,16 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.File;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class FileTest {
+class FileTest {
 
     @Test
-    public void testFile() {
+    void testFile() {
         Optional<File> f = FakerGen.create(File.class);
         assertTrue(f.isPresent());
         f.ifPresent(fo -> {

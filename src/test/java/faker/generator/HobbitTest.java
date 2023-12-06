@@ -1,18 +1,16 @@
 package faker.generator;
-import faker.generator.FakerGen;
-import faker.generator.models.*;
 
-import java.util.Locale;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import faker.generator.models.Hobbit;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class HobbitTest {
+class HobbitTest {
 
     @Test
-    public void testHobbit() {
+    void testHobbit() {
         Optional<Hobbit> c = FakerGen.create(Hobbit.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

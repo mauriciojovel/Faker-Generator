@@ -1,16 +1,15 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Shakespeare;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class ShakespeareTest {
+class ShakespeareTest {
     @Test
-    public void shakespeareTest() {
+    void shakespeareTest() {
         Optional<Shakespeare> s = FakerGen.create(Shakespeare.class);
         assertTrue(s.isPresent());
         s.ifPresent(sh -> {

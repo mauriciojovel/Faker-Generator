@@ -1,20 +1,16 @@
 package faker.generator;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import faker.generator.FakerGen;
-import faker.generator.models.*;
-
-import java.util.Locale;
+import faker.generator.models.Lebowski;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class LebowskiTest {
+class LebowskiTest {
 
     @Test
-    public void testLebowski() {
+    void testLebowski() {
         Optional<Lebowski> c = FakerGen.create(Lebowski.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

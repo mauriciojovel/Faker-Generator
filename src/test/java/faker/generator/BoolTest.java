@@ -1,16 +1,16 @@
 package faker.generator;
 
 import faker.generator.models.Bool;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BoolTest {
+class BoolTest {
     @Test
-    public void boolTest() {
+    void boolTest() {
         Optional<Bool> b = FakerGen.create(Bool.class);
         assertTrue(b.isPresent());
         b.ifPresent(bo -> {
