@@ -1,6 +1,6 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import faker.generator.FakeStarTrek;
 
 import java.lang.reflect.Field;
@@ -15,8 +15,11 @@ public class FakeStarTrekService implements FakeService<FakeStarTrek> {
             case LOCATION:
                 target.set(data, faker.starTrek().location());
                 break;
+            case KLINGON:
+                target.set(data, faker.starTrek().klingon());
+                break;
             case SPECIE:
-                target.set(data, faker.starTrek().specie());
+                target.set(data, faker.starTrek().species());
                 break;
             case VILLAIN:
                 target.set(data, faker.starTrek().villain());

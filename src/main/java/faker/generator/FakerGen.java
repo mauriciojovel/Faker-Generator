@@ -1,6 +1,6 @@
 package faker.generator;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import faker.generator.services.FakeServiceName;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,12 +26,12 @@ public class FakerGen {
   private static Faker faker;
 
   static {
-    faker = Faker.instance();
+    faker = new Faker();
   }
 
   @SuppressWarnings("WeakerAccess")
   public static void changeLanguage(Locale locale) {
-    faker = Faker.instance(locale);
+    faker = new Faker(locale);
   }
 
   public static <T> Optional<T> create(Class<T> clazz, String ... ignoreProperties) {

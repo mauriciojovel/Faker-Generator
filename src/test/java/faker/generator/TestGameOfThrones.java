@@ -1,16 +1,16 @@
 package faker.generator;
 
 import faker.generator.models.GameOfThrones;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestGameOfThrones {
+class TestGameOfThrones {
     @Test
-    public void testGameOfThrones() {
+    void testGameOfThrones() {
         Optional<GameOfThrones> g = FakerGen.create(GameOfThrones.class);
         assertTrue(g.isPresent());
         g.ifPresent(got -> {

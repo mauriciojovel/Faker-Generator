@@ -1,10 +1,8 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.SlackEmoji;
 import faker.generator.FakeSlackEmoji;
-
 import java.lang.reflect.Field;
+import net.datafaker.Faker;
 
 public class FakeSlackEmojiService implements FakeService<FakeSlackEmoji> {
     @Override

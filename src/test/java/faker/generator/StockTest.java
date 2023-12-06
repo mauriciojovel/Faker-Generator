@@ -1,18 +1,18 @@
 package faker.generator;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import faker.generator.FakerGen;
 import faker.generator.models.Stock;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-public class StockTest {
+class StockTest {
 
     @Test
-    public void testStock() {
+    void testStock() {
         Optional<Stock> s = FakerGen.create(Stock.class);
         assertTrue(s.isPresent());
         s.ifPresent(so -> {

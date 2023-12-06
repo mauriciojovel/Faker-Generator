@@ -1,16 +1,16 @@
 package faker.generator;
 
 import faker.generator.models.Demographic;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DemographicTest {
+class DemographicTest {
     @Test
-    public void demographicTest() {
+    void demographicTest() {
         Optional<Demographic> d = FakerGen.create(Demographic.class);
         assertTrue(d.isPresent());
         d.ifPresent(de -> {

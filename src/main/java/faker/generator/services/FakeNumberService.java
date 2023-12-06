@@ -1,6 +1,6 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import faker.generator.FakeNumber;
 
 import java.lang.reflect.Field;
@@ -56,6 +56,21 @@ public class FakeNumberService implements FakeService<FakeNumber> {
             String integerNumber = number.toString().split("\\.")[0];
             return new BigInteger(integerNumber);
         } else {
+            // Try to identify the correct type
+            var valueNumber = new BigDecimal(number.toString());
+            if (Double.class.isAssignableFrom(target.getType())) {
+                return valueNumber.doubleValue();
+            } else if (Float.class.isAssignableFrom(target.getType())) {
+                return valueNumber.floatValue();
+            } else if (Long.class.isAssignableFrom(target.getType())) {
+                return valueNumber.longValue();
+            } else if (Integer.class.isAssignableFrom(target.getType())) {
+                return valueNumber.intValue();
+            } else if (Short.class.isAssignableFrom(target.getType())) {
+                return valueNumber.shortValue();
+            } else if (Byte.class.isAssignableFrom(target.getType())) {
+                return valueNumber.byteValue();
+            }
             return number;
         }
     }

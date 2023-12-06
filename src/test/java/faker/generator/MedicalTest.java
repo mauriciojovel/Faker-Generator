@@ -1,18 +1,15 @@
 package faker.generator;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
-import faker.generator.FakerGen;
-import faker.generator.models.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Locale;
+import faker.generator.models.Medical;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class MedicalTest {
+class MedicalTest {
     @Test
-    public void testMedical() {
+    void testMedical() {
         Optional<Medical> b = FakerGen.create(Medical.class);
         assertTrue(b.isPresent());
         b.ifPresent(bo -> {

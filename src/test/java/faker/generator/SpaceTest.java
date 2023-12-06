@@ -1,16 +1,15 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Space;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class SpaceTest {
+class SpaceTest {
     @Test
-    public void spaceTest() {
+    void spaceTest() {
         Optional<Space> s = FakerGen.create(Space.class);
         assertTrue(s.isPresent());
         s.ifPresent(sp -> {

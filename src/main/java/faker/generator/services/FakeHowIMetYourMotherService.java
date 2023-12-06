@@ -1,7 +1,6 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.HowIMetYourMother;
+import net.datafaker.Faker;
 import faker.generator.FakeHowIMetYourMother;
 
 import java.lang.reflect.Field;

@@ -2,13 +2,13 @@ package faker.generator;
 
 import faker.generator.models.Student;
 import java.util.Optional;
-import org.junit.Test;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ParentPropertiesTest {
+class ParentPropertiesTest {
     @Test
-    public void shouldBeInitTheParentProperties() {
+    void shouldBeInitTheParentProperties() {
         Optional<Student> student = FakerGen.create(Student.class);
         assertTrue(student.isPresent());
         student.ifPresent(s -> {

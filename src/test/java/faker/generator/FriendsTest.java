@@ -1,18 +1,16 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Friends;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class FriendsTest {
+class FriendsTest {
 
     @Test
-    public void testFriends() {
+    void testFriends() {
         Optional<Friends> f = FakerGen.create(Friends.class);
         assertTrue(f.isPresent());
         f.ifPresent(fo -> {

@@ -1,18 +1,17 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
 import faker.generator.models.Cat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CatTest {
+class CatTest {
 
     @Test
-    public void testCat() {
+    void testCat() {
         Optional<Cat> c = FakerGen.create(Cat.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

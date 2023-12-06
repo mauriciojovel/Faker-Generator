@@ -1,17 +1,14 @@
 package faker.generator;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
-import faker.generator.FakerGen;
-import faker.generator.models.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Locale;
+import faker.generator.models.LeagueOfLegends;
 import java.util.Optional;
-import org.junit.Test;
-public class LeagueOfLegendsTest {
+import org.junit.jupiter.api.Test;
+class LeagueOfLegendsTest {
     @Test
-    public void testLeagueOfLegends() {
+    void testLeagueOfLegends() {
         Optional<LeagueOfLegends> c = FakerGen.create(LeagueOfLegends.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

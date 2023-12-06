@@ -1,16 +1,16 @@
 package faker.generator;
 
 import faker.generator.models.SlackEmoji;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SlackEmojiTest {
+class SlackEmojiTest {
     @Test
-    public void slackEmojiTest() {
+    void slackEmojiTest() {
         Optional<SlackEmoji> s = FakerGen.create(SlackEmoji.class);
         assertTrue(s.isPresent());
         s.ifPresent(sl -> {

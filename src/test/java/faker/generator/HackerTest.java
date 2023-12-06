@@ -1,17 +1,17 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
 import faker.generator.models.Hacker;
-import org.junit.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HackerTest {
+import org.junit.jupiter.api.Test;
+
+class HackerTest {
     @Test
-    public void testHacker() {
+    void testHacker() {
         Optional<Hacker> h = FakerGen.create(Hacker.class);
         assertTrue(h.isPresent());
         h.ifPresent(ha -> {

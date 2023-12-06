@@ -1,16 +1,15 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Witcher;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class WitcherTest {
+class WitcherTest {
     @Test
-    public void testWitcher() {
+    void testWitcher() {
         Optional<Witcher> c = FakerGen.create(Witcher.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

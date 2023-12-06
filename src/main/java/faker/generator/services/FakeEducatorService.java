@@ -1,10 +1,8 @@
 package faker.generator.services;
 
-import com.github.javafaker.Educator;
-import com.github.javafaker.Faker;
 import faker.generator.FakeEducator;
-
 import java.lang.reflect.Field;
+import net.datafaker.Faker;
 
 public class FakeEducatorService implements FakeService<FakeEducator> {
     @Override

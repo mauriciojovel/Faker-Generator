@@ -1,15 +1,16 @@
 package faker.generator;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import faker.generator.models.Hobbit;
 import java.util.Optional;
-import org.junit.Test;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
-public class IgnorePropertiesTest {
+class IgnorePropertiesTest {
     @Test
-    public void testHobbitIgnoreProperties() {
+    void testHobbitIgnoreProperties() {
         Optional<Hobbit> c = FakerGen.create(Hobbit.class, "character", "quote");
         assertTrue(c.isPresent());
         c.ifPresent(co -> {

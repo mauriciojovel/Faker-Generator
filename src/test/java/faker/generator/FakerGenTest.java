@@ -1,26 +1,28 @@
 package faker.generator;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import faker.generator.models.*;
 
 import java.util.Locale;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class FakerGenTest {
+class FakerGenTest {
 
   @Test
-  public void testName() {
+  void testName() {
     Optional<Person> p = FakerGen.create(Person.class);
     assertTrue(p.isPresent());
     p.ifPresent(pe -> assertNotNull(pe.getName()));
   }
 
   @Test
-  public void testNewInstance() {
+  void testNewInstance() {
     Optional<Doctor> d = FakerGen.create(Doctor.class);
     assertTrue(d.isPresent());
     d.ifPresent(doctor -> {
@@ -31,41 +33,39 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testNewCollection() {
+  void testNewCollection() {
     Optional<People> p = FakerGen.create(People.class);
     assertTrue(p.isPresent());
     p.ifPresent(people -> {
       assertNotNull(people.getPeople());
       assertFalse(people.getPeople().isEmpty());
-      people.getPeople().forEach(per -> {
-        assertNotNull(per.getPeople());
-      });
+      people.getPeople().forEach(per -> assertNotNull(per.getPeople()));
     });
   }
 
   @Test
-  public void testAncient() {
+  void testAncient() {
     Optional<Grecia> g = FakerGen.create(Grecia.class);
     assertTrue(g.isPresent());
     g.ifPresent(grecia -> assertNotNull(grecia.getGod()));
   }
 
   @Test
-  public void testAvatar() {
+  void testAvatar() {
     Optional<Avatar> g = FakerGen.create(Avatar.class);
     assertTrue(g.isPresent());
     g.ifPresent(av -> assertNotNull(av.getImage()));
   }
 
   @Test
-  public void testApp() {
+  void testApp() {
     Optional<App> g = FakerGen.create(App.class);
     assertTrue(g.isPresent());
     g.ifPresent(app -> assertNotNull(app.getAuthor()));
   }
 
   @Test
-  public void testInternet() {
+  void testInternet() {
     Optional<Internet> i = FakerGen.create(Internet.class);
     assertTrue(i.isPresent());
     i.ifPresent(internet -> {
@@ -91,24 +91,25 @@ public class FakerGenTest {
       assertNotNull(internet.getSlug());
       assertNotNull(internet.getCustomSlug());
       assertNotNull(internet.getUuid());
+      assertNotNull(internet.getUuidObject());
     });
   }
 
   @Test
-  public void testArtist() {
+  void testArtist() {
     Optional<Artist> g = FakerGen.create(Artist.class);
     assertTrue(g.isPresent());
     g.ifPresent(artist -> assertNotNull(artist.getName()));
   }
 
   @Test
-  public void testEmptyResult() {
+  void testEmptyResult() {
     Optional<EmptyModel> e = FakerGen.create(EmptyModel.class);
     assertFalse(e.isPresent());
   }
 
   @Test
-  public void testNumbers() {
+  void testNumbers() {
     Optional<Numbers> n = FakerGen.create(Numbers.class);
     assertTrue(n.isPresent());
     n.ifPresent(number -> {
@@ -124,23 +125,23 @@ public class FakerGenTest {
     });
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testNumberBetweenException() {
-    FakerGen.create(NumbersBetweenException.class);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testNumberDoubleException() {
-    FakerGen.create(NumbersDoubleException.class);
+  @Test
+  void testNumberBetweenException() {
+    assertThrows(IllegalArgumentException.class, () -> FakerGen.create(NumbersBetweenException.class));
   }
 
   @Test
-  public void testChangeLanguage() {
-    FakerGen.changeLanguage(Locale.FRANCE);
+  void testNumberDoubleException() {
+    assertThrows(IllegalArgumentException.class, () -> FakerGen.create(NumbersDoubleException.class));
   }
 
   @Test
-  public void testPhoneNumber() {
+  void testChangeLanguage() {
+    assertDoesNotThrow(() -> FakerGen.changeLanguage(Locale.ENGLISH));
+  }
+
+  @Test
+  void testPhoneNumber() {
     Optional<PhoneNumber> p = FakerGen.create(PhoneNumber.class);
     assertTrue(p.isPresent());
     p.ifPresent(pn -> {
@@ -150,7 +151,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testPokemon() {
+  void testPokemon() {
     Optional<Pokemon> p = FakerGen.create(Pokemon.class);
     assertTrue(p.isPresent());
     p.ifPresent(po -> {
@@ -160,7 +161,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testAddress() {
+  void testAddress() {
     Optional<Address> a = FakerGen.create(Address.class);
     assertTrue(a.isPresent());
     a.ifPresent(ad -> {
@@ -191,7 +192,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testBusiness() {
+  void testBusiness() {
     Optional<Business> b = FakerGen.create(Business.class);
     assertTrue(b.isPresent());
     b.ifPresent(bu -> {
@@ -202,16 +203,14 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testChuckNorris() {
+  void testChuckNorris() {
     Optional<ChuckNorris> c = FakerGen.create(ChuckNorris.class);
     assertTrue(c.isPresent());
-    c.ifPresent( ch -> {
-      assertNotNull(ch.getFact());
-    });
+    c.ifPresent( ch -> assertNotNull(ch.getFact()));
   }
 
   @Test
-  public void testBook() {
+  void testBook() {
     Optional<Book> b = FakerGen.create(Book.class);
     assertTrue(b.isPresent());
     b.ifPresent(bo -> {
@@ -223,7 +222,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testCompany() {
+  void testCompany() {
     Optional<Company> c = FakerGen.create(Company.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
@@ -239,7 +238,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testCurrency() {
+  void testCurrency() {
     Optional<Currency> c = FakerGen.create(Currency.class);
     assertTrue(c.isPresent());
     c.ifPresent( ch -> {
@@ -250,11 +249,12 @@ public class FakerGenTest {
 
 
   @Test
-  public void testCommerce() {
+  void testCommerce() {
     Optional<Commerce> c = FakerGen.create(Commerce.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
-      assertNotNull(co.getColor());
+      assertNotNull(co.getVendor());
+      assertNotNull(co.getBrand());
       assertNotNull(co.getDepartment());
       assertNotNull(co.getProductName());
       assertNotNull(co.getMaterial());
@@ -264,16 +264,14 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testColor() {
+  void testColor() {
     Optional<Color> c = FakerGen.create(Color.class);
     assertTrue(c.isPresent());
-    c.ifPresent( ch -> {
-      assertNotNull(ch.getColor());
-    });
+    c.ifPresent( ch -> assertNotNull(ch.getColor()));
   }
 
   @Test
-  public void testMedical() {
+  void testMedical() {
     Optional<Medical> b = FakerGen.create(Medical.class);
     assertTrue(b.isPresent());
     b.ifPresent(bo -> {
@@ -284,7 +282,8 @@ public class FakerGenTest {
     });
   }
 
-  public void testLebowski() {
+  @Test
+  void testLebowski() {
     Optional<Lebowski> c = FakerGen.create(Lebowski.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
@@ -295,7 +294,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testWeather() {
+  void testWeather() {
     Optional<Weather> c = FakerGen.create(Weather.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
@@ -306,7 +305,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testStarTrek() {
+  void testStarTrek() {
     Optional<StarTrek> c = FakerGen.create(StarTrek.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
@@ -318,7 +317,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testOverwatch() {
+  void testOverwatch() {
     Optional<Overwatch> c = FakerGen.create(Overwatch.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
@@ -328,7 +327,8 @@ public class FakerGenTest {
      });
    }
 
-    public void testRickAndMorty() {
+   @Test
+   void testRickAndMorty() {
     Optional<RickAndMorty> r = FakerGen.create(RickAndMorty.class);
     assertTrue(r.isPresent());
     r.ifPresent(ro -> {
@@ -339,7 +339,7 @@ public class FakerGenTest {
   }
 
   @Test
-  public void testTeam() {
+  void testTeam() {
     Optional<Team> t = FakerGen.create(Team.class);
     assertTrue(t.isPresent());
     t.ifPresent(to -> {

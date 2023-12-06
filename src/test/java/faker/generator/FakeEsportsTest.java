@@ -2,17 +2,17 @@ package faker.generator;
 
 import faker.generator.FakerGen;
 import faker.generator.models.Esports;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FakeEsportsTest {
+class FakeEsportsTest {
 
     @Test
-    public void testEsports() {
+    void testEsports() {
         Optional<Esports> es = FakerGen.create(Esports.class);
         assertTrue(es.isPresent());
         es.ifPresent(eso -> {

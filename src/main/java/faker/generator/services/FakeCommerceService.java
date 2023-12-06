@@ -1,6 +1,6 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import faker.generator.FakeCommerce;
 
 import java.lang.reflect.Field;
@@ -9,8 +9,11 @@ public class FakeCommerceService implements FakeService<FakeCommerce> {
     @Override
     public void setValue(FakeCommerce annotation, Field target, Object data, Faker faker) throws IllegalAccessException {
         switch (annotation.value()) {
-            case COLOR:
-                target.set(data, faker.commerce().color());
+            case BRAND:
+                target.set(data, faker.commerce().brand());
+                break;
+            case VENDOR:
+                target.set(data, faker.commerce().vendor());
                 break;
             case DEPARTMENT:
                 target.set(data, faker.commerce().department());

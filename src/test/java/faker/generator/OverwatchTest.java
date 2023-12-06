@@ -1,17 +1,16 @@
 package faker.generator;
 
-import faker.generator.FakerGen;
-import faker.generator.models.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import faker.generator.models.Overwatch;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class OverwatchTest {
+class OverwatchTest {
 
     @Test
-    public void testOverwatch() {
+    void testOverwatch() {
         Optional<Overwatch> c = FakerGen.create(Overwatch.class);
         assertTrue(c.isPresent());
         c.ifPresent(co -> {
