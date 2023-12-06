@@ -45,7 +45,7 @@
   </scm>
 
   <properties>
-    <revision>1.6.0</revision>
+    <revision>2.0.0</revision>
     <changelist>-SNAPSHOT</changelist>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
