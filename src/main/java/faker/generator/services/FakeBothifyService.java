@@ -1,7 +1,7 @@
 package faker.generator.services;
 
 import faker.generator.FakeBothify;
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import java.lang.reflect.Field;
 
 public class FakeBothifyService implements FakeService<FakeBothify> {

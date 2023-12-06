@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 public class Commerce {
-    @FakeCommerce(FakeCommerceType.COLOR)
-    private String color;
 
     @FakeCommerce(FakeCommerceType.DEPARTMENT)
     private String department;
@@ -23,4 +21,10 @@ public class Commerce {
 
     @FakeCommerce(FakeCommerceType.PROMOTION_CODE)
     private String promotionCode;
+
+    @FakeCommerce(FakeCommerceType.BRAND)
+    private String brand;
+
+    @FakeCommerce(FakeCommerceType.VENDOR)
+    private String vendor;
 }

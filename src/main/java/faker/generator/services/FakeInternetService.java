@@ -1,11 +1,12 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import faker.generator.FakeInternet;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class FakeInternetService implements FakeService<FakeInternet> {
     @Override
@@ -39,12 +40,12 @@ public class FakeInternetService implements FakeService<FakeInternet> {
                 target.set(data, faker.internet().url());
                 break;
             case AVATAR:
-                target.set(data, faker.internet().avatar());
+                target.set(data, faker.internet().image(50, 50));
                 break;
             case IMAGE:
                 if (annotation.imageWidth() > 0 && annotation.imageHeight() > 0) {
-                    target.set(data, faker.internet().image(annotation.imageWidth(), annotation.imageHeight(),
-                            annotation.isImageGray(), annotation.imageText()));
+                    target.set(data, faker.internet().image(annotation.imageWidth(),
+                            annotation.imageHeight()));
                 } else {
                     target.set(data, faker.internet().image());
                 }
@@ -79,7 +80,11 @@ public class FakeInternetService implements FakeService<FakeInternet> {
                         Arrays.asList(annotation.slugWords()), annotation.slugSeparator()));
                 break;
             case UUID:
-                target.set(data, faker.internet().uuid());
+                if (target.getType().isAssignableFrom(UUID.class)) {
+                    target.set(data, UUID.randomUUID());
+                } else {
+                    target.set(data, faker.internet().uuid());
+                }
                 break;
         }
     }

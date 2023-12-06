@@ -1,7 +1,6 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.HarryPotter;
+import net.datafaker.Faker;
 import faker.generator.FakeHarryPotter;
 
 import java.lang.reflect.Field;

@@ -91,6 +91,7 @@ class FakerGenTest {
       assertNotNull(internet.getSlug());
       assertNotNull(internet.getCustomSlug());
       assertNotNull(internet.getUuid());
+      assertNotNull(internet.getUuidObject());
     });
   }
 
@@ -252,7 +253,8 @@ class FakerGenTest {
     Optional<Commerce> c = FakerGen.create(Commerce.class);
     assertTrue(c.isPresent());
     c.ifPresent(co -> {
-      assertNotNull(co.getColor());
+      assertNotNull(co.getVendor());
+      assertNotNull(co.getBrand());
       assertNotNull(co.getDepartment());
       assertNotNull(co.getProductName());
       assertNotNull(co.getMaterial());

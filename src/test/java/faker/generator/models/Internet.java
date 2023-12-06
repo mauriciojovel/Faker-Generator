@@ -2,6 +2,7 @@ package faker.generator.models;
 
 import faker.generator.FakeInternet;
 import faker.generator.FakeInternetType;
+import java.util.UUID;
 import lombok.Data;
 
 @Data
@@ -36,7 +37,7 @@ public class Internet {
     @FakeInternet(FakeInternetType.IMAGE)
     private String image;
 
-    @FakeInternet(value = FakeInternetType.IMAGE, imageWidth = 800, imageHeight = 600, imageText = "Hello Wordl")
+    @FakeInternet(value = FakeInternetType.IMAGE, imageWidth = 800, imageHeight = 600)
     private String image800x600;
 
     @FakeInternet(FakeInternetType.PASSWORD)
@@ -71,4 +72,7 @@ public class Internet {
 
     @FakeInternet(FakeInternetType.UUID)
     private String uuid;
+
+    @FakeInternet(FakeInternetType.UUID)
+    private UUID uuidObject;
 }

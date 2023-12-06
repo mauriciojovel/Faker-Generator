@@ -16,8 +16,6 @@ public @interface FakeInternet {
   boolean isEmailSafe() default false;
   int imageWidth() default -1;
   int imageHeight() default -1;
-  boolean isImageGray() default false;
-  String imageText() default "";
   int passwordMin() default 8;
   int passwordMax() default 16;
   boolean passwordIncludeUppercase() default false;

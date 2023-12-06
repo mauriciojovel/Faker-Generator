@@ -1,6 +1,6 @@
 package faker.generator.services;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import faker.generator.FakeBeer;
 
 import java.lang.reflect.Field;

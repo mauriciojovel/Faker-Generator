@@ -1,5 +1,5 @@
 package faker.generator;
 
 public enum FakeStarTrekType {
-    CHARACTER,LOCATION, SPECIE, VILLAIN
+    CHARACTER,LOCATION, SPECIE, VILLAIN, KLINGON
 }

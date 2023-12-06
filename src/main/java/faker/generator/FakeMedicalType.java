@@ -1,6 +1,6 @@
 package faker.generator;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
