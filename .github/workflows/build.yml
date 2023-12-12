@@ -29,6 +29,8 @@ jobs:
         run: mvn clean install -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 
       - name: Run tests and generate reports
+        env: # Or as an environment variable
+          COVERALL_TOKEN: ${{ secrets.COVERALL_TOKEN }}
         run: mvn clean test jacoco:report coveralls:report  -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -B -V
         if: github.event_name == 'push' # && (github.event.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
 #
