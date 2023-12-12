@@ -7,17 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 🧺 Checkout Repository Code
         uses: actions/checkout@v3
 
-      - name: Set up JDK
+      - name: 🛠 Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           cache: maven
           java-version: '17'
 
-      - name: Get project version
+      - name: 🛠 Get project version
         run: |
           PROJECT_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout | awk -F'%' '{print $1}' | tr -d '[:space:]')
           if [[ $GITHUB_REF == refs/heads/release/* ]]; then
@@ -29,13 +29,13 @@ jobs:
           echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_ENV
           echo "CHANGE_LIST=${CHANGE_LIST}" >> $GITHUB_ENV
 
-      - name: Build with Maven
-        run: mvn clean install -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+      - name: 📦 Build with Maven
+        run: mvn clean test jacoco:report install -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 
-      - name: Run tests and generate reports
+      - name: 🚀 Coveralls Coverage Report Submission
         env: # Or as an environment variable
           COVERALL_TOKEN: ${{ secrets.COVERALL_TOKEN }}
-        run: mvn clean test jacoco:report coveralls:report  -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} -DrepoToken=${{ env.COVERALL_TOKEN }} --settings .maven.xml -B -V
+        run: mvn coveralls:report -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} -DrepoToken=${{ env.COVERALL_TOKEN }} --settings .maven.xml -B -V
         if: github.event_name == 'push' # && (github.event.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
 #
 #      - name: Create deploy file on master
