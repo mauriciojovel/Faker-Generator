@@ -20,7 +20,11 @@ jobs:
       - name: Get project version
         run: |
           PROJECT_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout | awk -F'%' '{print $1}' | tr -d '[:space:]')
-          CHANGE_LIST=-${GITHUB_RUN_NUMBER}-SNAPSHOT;
+          if [[ $GITHUB_REF == refs/heads/release/* ]]; then
+            CHANGE_LIST=-${GITHUB_RUN_NUMBER}-SNAPSHOT;
+          else
+            CHANGE_LIST=;
+          fi
           PROJECT_VERSION=${PROJECT_VERSION}${CHANGE_LIST}
           echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_ENV
           echo "CHANGE_LIST=${CHANGE_LIST}" >> $GITHUB_ENV
