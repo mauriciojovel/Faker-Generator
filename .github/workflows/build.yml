@@ -19,14 +19,14 @@ jobs:
 
       - name: Get project version
         run: |
-          export PROJECT_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout | awk -F'%' '{print $1}' | tr -d '[:space:]')
+          PROJECT_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout | awk -F'%' '{print $1}' | tr -d '[:space:]')
           CHANGE_LIST=-${GITHUB_RUN_NUMBER}-SNAPSHOT;
-          export PROJECT_VERSION=${PROJECT_VERSION}${CHANGE_LIST}
-          echo "Project version: ${PROJECT_VERSION}"
-          echo "Project change list: ${CHANGE_LIST}"
+          PROJECT_VERSION=${PROJECT_VERSION}${CHANGE_LIST}
+          echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_ENV
+          echo "CHANGE_LIST=${CHANGE_LIST}" >> $GITHUB_ENV
 
       - name: Build with Maven
-        run: "mvn clean install -Drevision=${PROJECT_VERSION} -Dchangelist=${CHANGE_LIST} --settings .maven.xml -Dgpg.skip -B -V"
+        run: mvn clean install -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -Dgpg.skip -B -V
 
       - name: Run tests and generate reports
         run: mvn clean test jacoco:report coveralls:report
