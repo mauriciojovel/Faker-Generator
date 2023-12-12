@@ -35,7 +35,7 @@ jobs:
       - name: Run tests and generate reports
         env: # Or as an environment variable
           COVERALL_TOKEN: ${{ secrets.COVERALL_TOKEN }}
-        run: mvn clean test jacoco:report coveralls:report  -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -B -V
+        run: mvn clean test jacoco:report coveralls:report  -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} -DrepoToken=${{ env.COVERALL_TOKEN }} --settings .maven.xml -B -V
         if: github.event_name == 'push' # && (github.event.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
 #
 #      - name: Create deploy file on master
