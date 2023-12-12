@@ -46,30 +46,3 @@ jobs:
 #          git commit -m "Add deploy file"
 #          git push
 #        if: github.event_name == 'push' && github.event.ref == 'refs/heads/master'
-
-#  build-other-branches:
-#    runs-on: ubuntu-latest
-#    needs: build
-#    strategy:
-#      matrix:
-#        exclude:
-#          - branch: master
-#          - branch: 'release/*'
-#
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v2
-#
-#      - name: Set up JDK
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'adopt'
-#          java-version: '17'
-#
-#      - name: Get project version for other branches
-#        run: |
-#          export PROJECT_VERSION=$(mvn help:evaluate -N -Dexpression=revision|grep -v '\[')
-#          echo "Project version: ${PROJECT_VERSION}"
-#
-#      - name: Build with Maven for other branches
-#        run: mvn clean install
