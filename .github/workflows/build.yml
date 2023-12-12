@@ -1,0 +1,76 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - 'master'
+      - 'release/*'
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Get project version
+        run: |
+          export PROJECT_VERSION=$(mvn help:evaluate -N -Dexpression=revision|grep -v '\[')
+          CHANGE_LIST=-${GITHUB_RUN_NUMBER}-SNAPSHOT;
+          export PROJECT_VERSION=${PROJECT_VERSION}${CHANGE_LIST}
+          echo "Project version: ${PROJECT_VERSION}"
+
+      - name: Build with Maven
+        run: mvn clean install -Drevision=$PROJECT_VERSION -Dchangelist=$CHANGE_LIST --settings .maven.xml -Dgpg.skip -B -V
+
+      - name: Run tests and generate reports
+        run: mvn clean test jacoco:report coveralls:report
+        if: github.event_name == 'push' && (github.event.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
+#
+#      - name: Create deploy file on master
+#        run: echo "Deployment file content" > deploy.txt
+#        if: github.event_name == 'push' && github.event.ref == 'refs/heads/master'
+#
+#      - name: Commit and push deploy file
+#        run: |
+#          git config --local user.email "actions@github.com"
+#          git config --local user.name "GitHub Actions"
+#          git add deploy.txt
+#          git commit -m "Add deploy file"
+#          git push
+#        if: github.event_name == 'push' && github.event.ref == 'refs/heads/master'
+
+  build-other-branches:
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        exclude:
+          - branch: master
+          - branch: 'release/*'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Get project version for other branches
+        run: |
+          export PROJECT_VERSION=$(mvn help:evaluate -N -Dexpression=revision|grep -v '\[')
+          echo "Project version: ${PROJECT_VERSION}"
+
+      - name: Build with Maven for other branches
+        run: mvn clean install
