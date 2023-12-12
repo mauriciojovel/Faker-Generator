@@ -26,7 +26,7 @@ jobs:
           echo "Project change list: ${CHANGE_LIST}"
 
       - name: Build with Maven
-        run: mvn clean install -Drevision=${PROJECT_VERSION} -Dchangelist=${CHANGE_LIST} --settings .maven.xml -Dgpg.skip -B -V
+        run: "mvn clean install -Drevision=${PROJECT_VERSION} -Dchangelist=${CHANGE_LIST} --settings .maven.xml -Dgpg.skip -B -V"
 
       - name: Run tests and generate reports
         run: mvn clean test jacoco:report coveralls:report
