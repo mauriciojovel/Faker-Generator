@@ -26,7 +26,7 @@ jobs:
           echo "CHANGE_LIST=${CHANGE_LIST}" >> $GITHUB_ENV
 
       - name: Build with Maven
-        run: mvn clean install -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -Dgpg.skip -B -V
+        run: mvn clean install -Drevision=${{ env.PROJECT_VERSION }} -Dchangelist=${{ env.CHANGE_LIST }} --settings .maven.xml -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 
       - name: Run tests and generate reports
         run: mvn clean test jacoco:report coveralls:report
