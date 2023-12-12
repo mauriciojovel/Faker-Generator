@@ -30,7 +30,7 @@ jobs:
 
       - name: Run tests and generate reports
         run: mvn clean test jacoco:report coveralls:report
-        if: github.event_name == 'push' && (github.event.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
+        if: github.event_name == 'push' # && (github.event.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
 #
 #      - name: Create deploy file on master
 #        run: echo "Deployment file content" > deploy.txt
